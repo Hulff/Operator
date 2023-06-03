@@ -38,39 +38,18 @@
     transform: rotate(360deg);
   }
 }
-h1 {
-  width: 100%;
-  height: fit-content;
-  padding: 0;
-  margin: 0;
+.link-button {
+  background: none;
+  font-size: 0.7em;
   color: white;
+  margin: 2em 0;
+  width: 100%;
   text-align: center;
-  opacity: 0;
-  transition: opacity 1s;
+  transition: color 1s;
+  text-decoration: none;
+  border: none;
 }
-.spark-api-button {
-  margin: 0 1vw;
-  min-width: 8em;
-  color: white;
-  background: rgb(27, 208, 249);
-  border: 1.5px solid rgb(27, 208, 249);
-  border-radius: 0.3em;
-  padding: 1vh 1.5vh;
-  font-size: 2vh;
-  font-weight: 600;
-  transition: color 0.5s, background 0.5s, border 0.5s;
-}
-.spark-api-button:hover {
+.link-button:hover {
+  color: rgb(120, 120, 120);
   cursor: pointer;
-  color: rgb(27, 208, 249);
-  background: white;
-  border: 1.5px solid rgb(255, 255, 255);
-}
-.container-spark-control {
-  margin-top: 2vh;
-  height: fit-content;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
 }
