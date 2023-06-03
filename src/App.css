@@ -1,4 +1,60 @@
+/* loading animation */
+.lds-ring {
+  margin-top: 3em;
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 4em;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s, height 0.8s;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 3em;
+  height: 3em;
+  margin: 1em;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 h1 {
-  color:white;
+  width: 100%;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  color: white;
   text-align: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.spark-api-button {
+}
+.container-spark-control {
+  margin-top: 2vh;
+  height: fit-content;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
 }
