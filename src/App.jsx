@@ -12,6 +12,8 @@ function App() {
   const [coordinateX, setCoorX] = useState(0);
   const [coordinateY, setCoorY] = useState(0);
   const isFetchingRef = useRef(false); // Usando useRef para criar uma referência mutável
+  const intervalId = useRef(""); // Usando useRef para criar uma referência mutável
+  const btnAction = useRef(getSparkDataLoop)
 
   useEffect(() => {
     setCoorX(-7.210364581000806);
@@ -64,12 +66,23 @@ function App() {
   function getSparkDataLoop(lat, long) {
     getSparkData(lat, long);
     setBtnAction("Stop")
-    setInterval(() => {
+    btnAction.current=stopInterval
+    intervalId.current = setInterval(() => {
       if (!isFetchingRef.current) {
         getSparkData(lat, long);
       }
-    }, 5000);
+    }, 4000);
   }
+  function stopInterval() {
+    setBtnAction("Play")
+    btnAction.current=getSparkDataLoop
+
+
+  if (intervalId.current) {
+    clearInterval(intervalId.current); // Parar o intervalo se o ID do intervalo existir
+    intervalId.current = null; // Limpar o ID do intervalo
+  }
+}
   return (
     <div className="App">
       <Loading></Loading>
@@ -87,7 +100,7 @@ function App() {
           classes={"spark-api-button"}
           p1={coordinateX}
           p2={coordinateY}
-          func={getSparkDataLoop}
+          func={btnAction.current}
         >
          {playBtn}
         </ButtonControl>
