@@ -43,7 +43,7 @@ function App() {
         // Processar os dados retornados pela API
         let dado = response.data.result;
         delete dado.pulseListGlobal;
-        dado.closestDistanceKm = dado.closestPulseDistance * 1.6;
+        dado.closestDistanceKm = dado.closestPulseDistance * 1.60934;
         console.log(dado);
         setUrl(
           dado.closestDistanceKm.toFixed(0) +
