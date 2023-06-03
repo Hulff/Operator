@@ -5,7 +5,7 @@ export function getHmacUrl(lat, lon) {
   const method = 'GET';
   const timestamp = Math.round(Date.now() / 1000);
   const secret = "d96d6f08999c48328b5e57a9026c5c54";
-  const key = "lxAppV1";
+  const key = 'LxAppV1';
   const timestampMillis = (timestamp * 1000).toString();
 
   let dataToBeHashed = `${method}\n/data/lightning/v1/spark\n${postdata}\n${timestamp}\n`;

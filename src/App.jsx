@@ -8,6 +8,7 @@ import "./App.css";
 
 function App() {
   const [url, setUrl] = useState("");
+  const [playBtn, setBtnAction] = useState("Play");
   const [coordinateX, setCoorX] = useState(0);
   const [coordinateY, setCoorY] = useState(0);
   const isFetchingRef = useRef(false); // Usando useRef para criar uma referência mutável
@@ -61,6 +62,8 @@ function App() {
   }
 
   function getSparkDataLoop(lat, long) {
+    getSparkData(lat, long);
+    setBtnAction("Stop")
     setInterval(() => {
       if (!isFetchingRef.current) {
         getSparkData(lat, long);
@@ -71,7 +74,7 @@ function App() {
     <div className="App">
       <Loading></Loading>
       <h1 id="h1Data">{url}</h1>
-      <div div="container-spark-control">
+      <div className="container-spark-control">
         <ButtonControl
           classes={"spark-api-button"}
           p1={coordinateX}
@@ -86,7 +89,7 @@ function App() {
           p2={coordinateY}
           func={getSparkDataLoop}
         >
-          Play
+         {playBtn}
         </ButtonControl>
       </div>
     </div>
