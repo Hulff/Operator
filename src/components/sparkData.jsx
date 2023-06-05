@@ -3,13 +3,12 @@ import axios from "axios";
 import { getHmacUrl } from "../services/spark";
 import { useNavigate } from "react-router-dom";
 import Loading from "./loading";
-import Button from "./button";
 import ButtonControl from "./buttonSparkControl";
 import "./styles/spark.css"
 
-function SparkData() {
-  const [url, setUrl] = useState("");
+function SparkData({sparkData,setSparkData}) {
   const [playBtn, setBtnAction] = useState("Play");
+  const [text,setText] = useState("")
   const [coordinateX, setCoorX] = useState(0);
   const [coordinateY, setCoorY] = useState(0);
   const isFetchingRef = useRef(false); // Usando useRef para criar uma referência mutável
@@ -17,6 +16,9 @@ function SparkData() {
   const btnAction = useRef(getSparkDataLoop)
 
   useEffect(() => {
+    if(sparkData !== null) {
+      setText(`${sparkData.closestPulseDistance} miles/ ${sparkData.closestDistanceKm} km`)
+    }
     setCoorX(-7.210364581000806);
     setCoorY(-39.309899574052);
     getSparkData(-7.210364581000806, -39.309899574052);
@@ -26,7 +28,7 @@ function SparkData() {
     let load = document.getElementById("loadingDiv");
     let h1 = document.getElementById("h1Data");
 
-    if (isFetchingRef.current) {
+    if (isFetchingRef.current ) {
       return; // Retorna se o fetch estiver em andamento
     }
 
@@ -44,14 +46,11 @@ function SparkData() {
         // Processar os dados retornados pela API
         let dado = response.data.result;
         delete dado.pulseListGlobal;
-        dado.closestDistanceKm = dado.closestPulseDistance * 1.6;
-        console.log(dado);
-        setUrl(
-          dado.closestDistanceKm.toFixed(0) +
-            " Km  /  " +
-            dado.closestPulseDistance.toFixed(0) +
-            "  miles"
-        );
+        dado.closestPulseDistance = dado.closestPulseDistance.toFixed(0)
+        dado.closestDistanceKm = (dado.closestPulseDistance * 1.6).toFixed(0);
+        console.log(dado)
+        setSparkData(dado)
+        setText(`${dado.closestPulseDistance} miles ${dado.closestDistanceKm} km`)
         load.style.opacity = 0;
         load.style.height = 0;
         h1.style.opacity = 1;
@@ -87,7 +86,7 @@ function SparkData() {
   return (
     <div className="container-spark">
       <Loading></Loading>
-      <h1 id="h1Data">{url}</h1>
+      <h1 id="h1Data">{text}</h1>
       <div className="container-spark-control">
         <ButtonControl
           classes={"spark-api-button"}

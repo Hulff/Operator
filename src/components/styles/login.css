@@ -1,3 +1,20 @@
+@keyframes moveH1 {
+  0% {
+    width: 0em;
+    opacity: 0;
+    padding: 0;
+  }
+  99% {
+    width: 4.2em;
+    opacity: 1;
+    padding: 0 3% 0 0.1%;
+  }
+  100% {
+    width: fit-content;
+    opacity: 1;
+    padding: 0 3% 0 0.1%;
+  }
+}
 .container-login {
   min-height: 24em;
   border-radius: 1vh;
@@ -9,23 +26,34 @@
   align-items: center;
   justify-content: center;
 }
+.container-login-logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.container-login > h1 {
-    width: 100%;
-    height: fit-content;
-    padding: 0;
-    margin: 0;
-    color: white;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 1s;
-  }
+.container-login-logo > h1 {
+  width: 0;
+  opacity: 0;
+  animation: moveH1 0.5s 1s linear forwards;
+  font-size: 2em;
+  margin: 0;
+  color: white;
+  text-align: center;
+}
+.container-login-logo > img {
+  height: 3em;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
 .container-login > input {
   border-radius: 0.7vh;
   color: white;
   border: 1.5px solid rgb(27, 208, 249);
-  width: 30%;
-  padding: 1% 3%;
+  width: fit-content;
+  min-width: 40%;
+  padding: 1% 0%;
   background: none;
   font-size: 0.7em;
   text-align: center;
@@ -33,11 +61,11 @@
 }
 .login-button {
   font-weight: bold;
-  border-radius: 0.7vh;
+  border-radius: 0.5vh;
   color: white;
   border: 1.5px solid rgb(27, 208, 249);
-  width: 12vw;
-  padding: 1% 3%;
+  width: fit-content;
+  padding: 1% 5%;
   background: #1e1e1e;
   font-size: 0.7em;
   text-align: center;

@@ -5,7 +5,10 @@ import Login from "./components/login"
 import "./App.css";
 
 function App() {
-
+  const [code,setCode] = useState(null)
+  const [sparkData,setSparkData] = useState(null)
+  const [orderData,setOrderData] = useState(null)
+  const [cabinsData,setCabinsData] = useState(null)
   return (
     <>
       <div className="container">
@@ -15,7 +18,7 @@ function App() {
             path="/"
             element={
               <>
-                <Login></Login>
+                <Login setCode={setCode} code={code}></Login>
               </>
             }
           />
@@ -24,7 +27,16 @@ function App() {
             path="/Spark"
             element={
               <>
-                <SparkData></SparkData>
+                <SparkData sparkData={sparkData} setSparkData={setSparkData}></SparkData>
+              </>
+            }
+          />
+          <Route
+            exact
+            path="/Options"
+            element={
+              <>
+
               </>
             }
           />
