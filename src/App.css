@@ -53,3 +53,6 @@
   color: rgb(120, 120, 120);
   cursor: pointer;
 }
+@media screen and (max-width: 500px) {
+      
+}

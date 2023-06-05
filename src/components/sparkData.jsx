@@ -4,37 +4,55 @@ import { getHmacUrl } from "../services/spark";
 import { useNavigate } from "react-router-dom";
 import Loading from "./loading";
 import ButtonControl from "./buttonSparkControl";
-import "./styles/spark.css"
+import "./styles/spark.css";
+import img from "../imgs/lightning-svgrepo-com.svg";
 
-function SparkData({sparkData,setSparkData}) {
+function SparkData({ sparkData, setSparkData }) {
   const [playBtn, setBtnAction] = useState("Play");
-  const [text,setText] = useState("")
+  const [textMiles, setText1] = useState("");
+  const [textKm, setText2] = useState("");
   const [coordinateX, setCoorX] = useState(0);
   const [coordinateY, setCoorY] = useState(0);
   const isFetchingRef = useRef(false); // Usando useRef para criar uma referência mutável
   const intervalId = useRef(""); // Usando useRef para criar uma referência mutável
-  const btnAction = useRef(getSparkDataLoop)
+  const btnAction = useRef(getSparkDataLoop);
 
   useEffect(() => {
-    if(sparkData !== null) {
-      setText(`${sparkData.closestPulseDistance} miles/ ${sparkData.closestDistanceKm} km`)
-    }
+    let load = document.getElementById("loadingDiv");
+    let thunderDiv = document.getElementById("thunderDiv");
+    let thunderImg = document.getElementById("thunderImg");
+    intervalId.current = null; // Limpar o ID do intervalo
     setCoorX(-7.210364581000806);
     setCoorY(-39.309899574052);
-    getSparkData(-7.210364581000806, -39.309899574052);
+    if (sparkData !== null && sparkData !== undefined) {
+      console.log("tem dado");
+      setText1(`${sparkData.closestPulseDistance} miles`);
+      setText2(`${sparkData.closestDistanceKm} km`);
+      load.style.opacity = 0;
+      load.style.height = 0;
+      thunderDiv.style.opacity = 1;
+      thunderImg.style.background = sparkData.alertColor;
+    } else {
+      getSparkData(-7.210364581000806, -39.309899574052);
+    }
+
+    return () => {
+      console.log("desmontado");
+      clearInterval(intervalId.current); // Parar o intervalo se o ID do intervalo existir
+    };
   }, []);
 
   function getSparkData(lat, long) {
     let load = document.getElementById("loadingDiv");
-    let h1 = document.getElementById("h1Data");
-
-    if (isFetchingRef.current ) {
+    let thunderDiv = document.getElementById("thunderDiv");
+    let thunderImg = document.getElementById("thunderImg");
+    if (isFetchingRef.current) {
       return; // Retorna se o fetch estiver em andamento
     }
 
     load.style.opacity = 1;
     load.style.height = "4em";
-    h1.style.opacity = 0;
+    thunderDiv.style.opacity = 0;
 
     const url = getHmacUrl(lat, long);
     console.log(url);
@@ -46,14 +64,17 @@ function SparkData({sparkData,setSparkData}) {
         // Processar os dados retornados pela API
         let dado = response.data.result;
         delete dado.pulseListGlobal;
-        dado.closestPulseDistance = dado.closestPulseDistance.toFixed(0)
+        dado.closestPulseDistance = dado.closestPulseDistance.toFixed(0);
         dado.closestDistanceKm = (dado.closestPulseDistance * 1.6).toFixed(0);
-        console.log(dado)
-        setSparkData(dado)
-        setText(`${dado.closestPulseDistance} miles ${dado.closestDistanceKm} km`)
+        console.log(dado);
+        setSparkData(dado);
+        setText1(`${dado.closestPulseDistance} miles`);
+        setText2(`${dado.closestDistanceKm} km`);
+
         load.style.opacity = 0;
         load.style.height = 0;
-        h1.style.opacity = 1;
+        thunderDiv.style.opacity = 1;
+        thunderImg.style.background = dado.alertColor;
         isFetchingRef.current = false; // Define a flag para false para indicar que o fetch foi concluído
       })
       .catch((error) => {
@@ -65,8 +86,8 @@ function SparkData({sparkData,setSparkData}) {
 
   function getSparkDataLoop(lat, long) {
     getSparkData(lat, long);
-    setBtnAction("Stop")
-    btnAction.current=stopInterval
+    setBtnAction("Stop");
+    btnAction.current = stopInterval;
     intervalId.current = setInterval(() => {
       if (!isFetchingRef.current) {
         getSparkData(lat, long);
@@ -74,19 +95,29 @@ function SparkData({sparkData,setSparkData}) {
     }, 4000);
   }
   function stopInterval() {
-    setBtnAction("Play")
-    btnAction.current=getSparkDataLoop
+    setBtnAction("Play");
+    btnAction.current = getSparkDataLoop;
 
-
-  if (intervalId.current) {
-    clearInterval(intervalId.current); // Parar o intervalo se o ID do intervalo existir
-    intervalId.current = null; // Limpar o ID do intervalo
+    if (intervalId.current) {
+      clearInterval(intervalId.current); // Parar o intervalo se o ID do intervalo existir
+      intervalId.current = null; // Limpar o ID do intervalo
+    }
   }
-}
   return (
     <div className="container-spark">
       <Loading></Loading>
-      <h1 id="h1Data">{text}</h1>
+      <div id="thunderDiv" className="container-spark-thunder-div">
+        <img
+          alt="thunder image"
+          id="thunderImg"
+          className="container-spark-thunder-img"
+          src={img}
+        />
+        <div>
+          <h1 id="h1Data">{textMiles}</h1>
+          <h1 id="h2Data">{textKm}</h1>
+        </div>
+      </div>
       <div className="container-spark-control">
         <ButtonControl
           classes={"spark-api-button"}
@@ -102,7 +133,7 @@ function SparkData({sparkData,setSparkData}) {
           p2={coordinateY}
           func={btnAction.current}
         >
-         {playBtn}
+          {playBtn}
         </ButtonControl>
       </div>
     </div>

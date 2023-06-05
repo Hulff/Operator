@@ -33,10 +33,10 @@
   justify-content: center;
 }
 
-.container-login-logo > h1 {
+.h1-first-load {
   width: 0;
   opacity: 0;
-  animation: moveH1 0.5s 1s linear forwards;
+  animation: moveH1 0.4s .4s linear forwards;
   font-size: 2em;
   margin: 0;
   color: white;
@@ -45,7 +45,7 @@
 .container-login-logo > img {
   height: 3em;
   opacity: 0;
-  transition: opacity 0.8s;
+  transition: opacity .8s;
 }
 .container-login > input {
   border-radius: 0.7vh;
@@ -76,4 +76,18 @@
   color: white;
   background: rgb(27, 208, 249);
   border: 1.5px solid #1e1e1e;
+}
+
+@media screen and (max-width: 500px) {
+  .container-login {
+    min-height: 24em;
+    border-radius: 1vh;
+    border: 1.5px solid rgb(27, 208, 249);
+    margin: 15% 15%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

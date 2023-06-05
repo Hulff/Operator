@@ -1,7 +1,7 @@
 import React from 'react';
-const Loading = () => {
+const Loading = ({ref}) => {
     return ( <>
-    <div id="loadingDiv" className="lds-ring">
+    <div id="loadingDiv" ref={ref} className="lds-ring">
         <div></div>
         <div></div>
         <div></div>
