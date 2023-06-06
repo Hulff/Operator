@@ -65,7 +65,7 @@ function SparkData({ sparkData, setSparkData }) {
         let dado = response.data.result;
         delete dado.pulseListGlobal;
         dado.closestPulseDistance = dado.closestPulseDistance.toFixed(0);
-        dado.closestDistanceKm = (dado.closestPulseDistance * 1.6).toFixed(0);
+        dado.closestDistanceKm = (dado.closestPulseDistance * 1.60934).toFixed(0);
         console.log(dado);
         setSparkData(dado);
         setText1(`${dado.closestPulseDistance} miles`);

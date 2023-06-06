@@ -1,0 +1,109 @@
+.container-options {
+  min-height: 24em;
+  border-radius: 1vh;
+  border: 1.5px solid rgb(27, 208, 249);
+  margin: 5% 15%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.container-options > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.container-options > ul > li {
+  height: 2em;
+  border-radius: 1vh;
+  border: 1.5px solid rgb(27, 208, 249);
+  margin-top: 5%;
+  padding: 3% 5%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.container-options > ul > li > img {
+  height: 0.8em;
+  border-radius: 3px;
+  padding: 1% 2%;
+  background: #1e1e1e;
+  transition: color 0.7s, background 0.7s, border 0.7s;
+  border: 1.5px solid rgb(27, 208, 249);
+}
+.container-options > ul > li > img:hover {
+  background: rgb(27, 208, 249);
+
+  cursor: pointer;
+}
+.container-options > ul > li > h2 {
+  width: 100%;
+  font-size: 1em;
+  color: white;
+  margin: 0% 6%;
+}
+.container-options > ul > li > button {
+  display: flex;
+  font-weight: bold;
+  border-radius: 0.5vh;
+  color: white;
+  border: 1.5px solid rgb(27, 208, 249);
+  width: fit-content;
+  padding: 1.5% 2%;
+  background: rgb(27, 208, 249);
+  font-size: 0.7em;
+  text-align: center;
+  transition: color 0.7s, background 0.7s, border 0.7s;
+  justify-content: center;
+  align-items: center;
+}
+.container-options > ul > li > button > svg {
+  stroke-width: 3px;
+}
+.container-options > ul > li > button:hover {
+  cursor: pointer;
+  color: rgb(27, 208, 249);
+  background: #1e1e1e;
+}
+.img-cabin {
+  padding: 1%;
+  display: flex;
+  border-radius: 1.5vh;
+  border: 1.5px solid rgb(27, 208, 249);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: color 0.7s, background 0.7s, border 0.7s;
+}
+.img-cabin-list {
+  padding: 1%;
+  display: flex;
+  border-radius: 1vh;
+  border: 1.5px solid rgb(27, 208, 249);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: color 0.7s, background 0.7s, border 0.7s;
+}
+.img-cabin:hover,
+.img-cabin-list:hover {
+  cursor: pointer;
+  background: rgb(27, 208, 249);
+  color: #1e1e1e;
+}
+.img-cabin > svg {
+}
+@media screen and (max-width: 500px) {
+  .container-options > ul > li > h2 {
+    font-size: 0.8em;
+    margin: 0 4%;
+  }
+}

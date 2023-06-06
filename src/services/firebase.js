@@ -2,30 +2,32 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, remove, get, child } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+  apiKey: "AIzaSyD6VQEUWKSNPxEMaRb4bU3_ToCxyRkvGKk",
+  authDomain: "operatorappbyhulff.firebaseapp.com",
+  databaseURL: "https://operatorappbyhulff-default-rtdb.firebaseio.com",
+  projectId: "operatorappbyhulff",
+  storageBucket: "operatorappbyhulff.appspot.com",
+  messagingSenderId: "1052752165670",
+  appId: "1:1052752165670:web:602fc6b8b767abff305fe7",
+  measurementId: "G-05EPKV2PM3"
 };
 const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
-export function writeCodeData(code,name) {
-  const db = database;
-  set(ref(db, "codigos/"+code), {
-    code:code
-  });
+export function writeCabinsData(code,n,type,vl) {
+  if (type=="snow") {
+    set(ref(database, `cabinsData/${code}/${n}`), {
+      ac:vl,
+    });
+  } else if (type=="window") {
+    set(ref(database, `cabinsData/${code}/${n}`), {
+      window:vl
+    });
+  }
 }
-// export function deleteTaskData(userId, id) {
-//   const db = database;
-//   remove(ref(db, `tasks/${userId}/${id}`));
-// }
+
 export async function getCodeData(code) {
-  const db = ref(database);
-  const snapshot = await get(child(db, `codigos/${code}`));
+  const snapshot = await get(child(ref(database), `codes/${code}`));
   if (snapshot.exists()) {
     let data = snapshot.val();
     return data;
@@ -35,4 +37,5 @@ export async function getCodeData(code) {
   }
 }
 
-export const database = getDatabase(app);
+
+
