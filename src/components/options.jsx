@@ -1,10 +1,10 @@
 import React, { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { CgChevronRight, CgFormatJustify } from "react-icons/cg";
+import {AiFillThunderbolt} from "react-icons/ai"
 import { MdOutlineWindow } from "react-icons/md";
 import Button from "./button";
-import img from "../imgs/lightning-svgrepo-com.svg";
-import "./styles/options.css";
+import "./styles/options.css"
 
 const Options = ({data}) => {
   useEffect(()=>{
@@ -25,7 +25,9 @@ const Options = ({data}) => {
       <div className="container-options">
         <ul>
           <li>
-            <img src={img} />
+          <div className="img-thunder">
+              <AiFillThunderbolt/>
+            </div>
             <h2>Distancia dos raios</h2>
             <Button func={goToSpark}>
               <CgChevronRight />

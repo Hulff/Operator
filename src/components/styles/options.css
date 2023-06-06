@@ -76,6 +76,16 @@
 .img-cabin {
   padding: 1%;
   display: flex;
+  border-radius: 1vh;
+  border: 1.5px solid rgb(27, 208, 249);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: color 0.7s, background 0.7s, border 0.7s;
+}
+.img-thunder {
+  padding: 1%;
+  display: flex;
   border-radius: 1.5vh;
   border: 1.5px solid rgb(27, 208, 249);
   align-items: center;
@@ -94,7 +104,8 @@
   transition: color 0.7s, background 0.7s, border 0.7s;
 }
 .img-cabin:hover,
-.img-cabin-list:hover {
+.img-cabin-list:hover,
+.img-thunder:hover {
   cursor: pointer;
   background: rgb(27, 208, 249);
   color: #1e1e1e;
@@ -105,5 +116,16 @@
   .container-options > ul > li > h2 {
     font-size: 0.8em;
     margin: 0 4%;
+  }
+  .container-options {
+    min-height: 60vh;
+    border-radius: 1vh;
+    border: 1.5px solid rgb(27, 208, 249);
+    margin: 10% 15%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 }

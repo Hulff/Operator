@@ -25,6 +25,9 @@ export function writeCabinsData(code,n,type,vl) {
     });
   }
 }
+export function writeCabinsOrder(code,list) {
+    set(ref(database, `codes/${code}/cabinOrder`), list);
+}
 
 export async function getCodeData(code) {
   const snapshot = await get(child(ref(database), `codes/${code}`));

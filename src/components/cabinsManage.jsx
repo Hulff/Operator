@@ -6,7 +6,7 @@ import { TbWindow, TbWindowOff } from "react-icons/tb";
 import { writeCabinsData } from "../services/firebase";
 import "./styles/cabinOrder.css";
 
-const CabinsManage = ({ code,cabinsList }) => {
+const CabinsManage = ({ code,cabinsList,cabins }) => {
   function active(e) {
     console.log(code)
     console.log(e);

@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
+import { useCookies } from "react-cookie";
 import Button from "./button";
 import LinkButton from "./linkButton";
 import { useNavigate } from "react-router-dom";
 import "./styles/login.css";
 import img from "../imgs/user-svgrepo-com.svg";
 import { getCodeData, writeCodeData } from "../services/firebase";
-const Login = ({ code, setCode, setData }) => {
+const Login = ({ code, setCode, setData,setCabinsList }) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["code"]);
   useEffect(() => {
     document.getElementById("logoImg").style.opacity = 1;
   }, []);
@@ -13,6 +15,7 @@ const Login = ({ code, setCode, setData }) => {
   const codeInputData = useRef("");
   function goToList() {
     setCode(codeInputData.current.value);
+    setCookie("code",codeInputData.current.value)
     const getData = async () => {
       try {
         const data = await getCodeData(codeInputData.current.value);
@@ -23,6 +26,7 @@ const Login = ({ code, setCode, setData }) => {
           return;
         }
         setData(data);
+        setCabinsList(data.cabinOrder)
         navigate(`/Options`);
       } catch (error) {
         console.error(error);
