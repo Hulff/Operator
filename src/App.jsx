@@ -19,7 +19,6 @@ function App() {
   const [sparkData, setSparkData] = useState(null);
   const [cabinsData, setCabinsData] = useState(null);
   const [cabinsList, setCabinsList] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (cookies.code) {
@@ -53,6 +52,7 @@ function App() {
             element={
               <>
                 <Login
+                  setIsLoading={setIsLoading}
                   setCabinsList={setCabinsList}
                   setCode={setCode}
                   code={code}
