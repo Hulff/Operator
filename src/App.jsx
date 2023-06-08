@@ -5,7 +5,7 @@ import SparkData from "./components/sparkData";
 import Login from "./components/login";
 import CabinOrder from "./components/cabinOrder";
 import CabinList from "./components/cabinList";
-import { getCodeData,getCabinListData } from "./services/firebase";
+import { getCodeData, getCabinListData } from "./services/firebase";
 import "./App.css";
 import Options from "./components/options";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,9 @@ function App() {
         try {
           const data = await getCodeData(cookies.code);
           console.log(data);
-          setData(data);
+          if (data != null) {
+            setData(data);
+          }
           if (data.cabinOrder) {
             setCabinsList(data.cabinOrder);
           }
@@ -42,14 +44,13 @@ function App() {
       };
       const getCabinsData = async () => {
         try {
-          const data = await getCabinListData(cookies.code)
+          const data = await getCabinListData(cookies.code);
           console.log(data);
           setCabinsData(data);
         } catch (error) {
           console.error(error);
         } finally {
           setIsLoadingCabinData(false);
-
         }
       };
       getData();
