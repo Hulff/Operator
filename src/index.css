@@ -19,3 +19,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+  background: rgb(12, 99, 118);
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(27 208 249);
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f114;
+}

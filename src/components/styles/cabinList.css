@@ -11,10 +11,54 @@
   align-items: center;
   justify-content: flex-start;
 }
-h3 {
+h3,
+h1 {
   width: 100%;
   text-align: center;
+  color: white;
 }
+.container-list > ul {
+  width: 90%;
+  display: flex;
+  padding: 0;
+  margin: 5% 0;
+  list-style: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
+.container-list > ul > li {
+  width: 30%;
+}
+.container-list > ul > li > button {
+  height: fit-content;
+  display: flex;
+  width: fit-content;
+  font-weight: bold;
+  border-radius: 0 1vh 1vh 0;
+  color: white;
+  width: -moz-fit-content;
+  border: 1.5px solid rgb(27, 208, 249);
+  padding: 4% 6%;
+  background: #1e1e1e;
+  font-size: 0.9em;
+  text-align: center;
+  transition: color 0.7s, background 0.4s, border 0.7s;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.container-list > ul > li > button > p {
+  margin:0;
+  pointer-events: none;
+}
+.container-list > ul > li > button > svg {
+  pointer-events: none;
+
+}
+
 .container-list > div {
   overflow-y: scroll;
   display: flex;

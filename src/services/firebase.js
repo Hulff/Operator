@@ -9,19 +9,22 @@ const firebaseConfig = {
   storageBucket: "operatorappbyhulff.appspot.com",
   messagingSenderId: "1052752165670",
   appId: "1:1052752165670:web:602fc6b8b767abff305fe7",
-  measurementId: "G-05EPKV2PM3"
+  measurementId: "G-05EPKV2PM3",
 };
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-export function writeCabinsData(code,cabin,action,value) {
-    set(ref(database, `cabinsData/${code}/${cabin}/${action}`), {
-      value:value,
-    });
+export function writeCabinsData(code, cabin, action, value) {
+  set(ref(database, `cabinsData/${code}/${cabin}/${action}`), {
+    value: value,
+  });
+}
+export function writeFullCabinsData(code, obj) {
+  set(ref(database, `cabinsData/${code}/`), obj);
 }
 
-export function writeCabinsOrder(code,list) {
-    set(ref(database, `codes/${code}/cabinOrder`), list);
+export function writeCabinsOrder(code, list) {
+  set(ref(database, `codes/${code}/cabinOrder`), list);
 }
 
 export async function getCodeData(code) {
@@ -44,7 +47,3 @@ export async function getCabinListData(code) {
     return null;
   }
 }
-
-
-
-

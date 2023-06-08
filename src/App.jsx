@@ -130,6 +130,7 @@ function App() {
               ) : (
                 <>
                   <CabinList
+                    setCabinsData={setCabinsData}
                     code={code}
                     cabinsData={cabinsData}
                     cabinsList={cabinsList}
