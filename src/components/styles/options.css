@@ -1,5 +1,6 @@
 .container-options {
-  min-height: 24em;
+  padding-bottom: 5vh;
+  min-height: fit-content;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);
   margin: 0% 15%;
