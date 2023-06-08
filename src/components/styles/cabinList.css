@@ -40,7 +40,7 @@ background: rgb(12, 99, 118);
 }
 .container-list > div > div {
   border-radius: 1vh;
-  padding: 2% 0;
+  padding: 2vh 0;
   margin: 2vh 0;
   background: #2b2b2b;
   width: 80%;
@@ -118,4 +118,18 @@ background: rgb(12, 99, 118);
 .container-list > div > div > div:nth-child(2) > button:nth-child(3) > svg,
 .container-list > div > div > div:nth-child(2) > button:nth-child(2) > svg {
   pointer-events: none;
+}
+@media screen and (max-width: 500px) {
+  .container-list {
+    height: 85vh;
+  }
+  .container-list > div {
+    overflow-y: scroll;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40em;
+}
 }

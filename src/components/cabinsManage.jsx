@@ -3,38 +3,41 @@ import Button from "./button";
 import { MdOutlineWindow } from "react-icons/md";
 import { BsSnow } from "react-icons/bs";
 import { TbWindow, TbWindowOff } from "react-icons/tb";
+import {FaWifi} from "react-icons/fa"
 import { writeCabinsData } from "../services/firebase";
 import "./styles/cabinOrder.css";
 
-const CabinsManage = ({ code,cabinsList,cabins }) => {
+const CabinsManage = ({ code,cabinsList,cabinsData }) => {
   function active(e) {
     console.log(code)
     console.log(e);
     console.log(e.target.name);
     console.log(e.target.children[0].classList.value);
     if (e.target.classList.value == "" || null || undefined) {
-        writeCabinsData(code,e.target.name,e.target.children[0].classList.value,true)
+      writeCabinsData(code,e.target.name,e.target.children[0].classList.value,true)
       e.target.classList.add("active");
     } else {
       e.target.classList.remove("active");
       writeCabinsData(code,e.target.name,e.target.children[0].classList.value,false)
-      
     }
   }
   return (
     <>
       {cabinsList.map((cabin) => (
-        <div>
+        <div key={cabin+"div"}>
           <div>
             <MdOutlineWindow />
           </div>
           <div>
             <h3>{`Cabine ${cabin}`}</h3>
-            <Button name={cabin} func={active}>
-              <BsSnow class="snow"/>
+            <Button  name={cabin} func={active}>
+              <BsSnow className="ac"/>
             </Button>
             <Button  name={cabin}  func={active}>
-              <TbWindow class="window" />
+              <TbWindow className="window" />
+            </Button>
+            <Button  name={cabin}  func={active}>
+              <FaWifi className="wifi" />
             </Button>
           </div>
         </div>

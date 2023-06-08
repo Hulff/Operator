@@ -7,7 +7,7 @@ import ButtonControl from "./buttonSparkControl";
 import "./styles/spark.css";
 import img from "../imgs/lightning-svgrepo-com.svg";
 
-function SparkData({ sparkData, setSparkData }) {
+function SparkData({coordinates, sparkData, setSparkData }) {
   const [playBtn, setBtnAction] = useState("Play");
   const [textMiles, setText1] = useState("");
   const [textKm, setText2] = useState("");
@@ -18,12 +18,13 @@ function SparkData({ sparkData, setSparkData }) {
   const btnAction = useRef(getSparkDataLoop);
 
   useEffect(() => {
+    console.log(coordinates)
     let load = document.getElementById("loadingDiv");
     let thunderDiv = document.getElementById("thunderDiv");
     let thunderImg = document.getElementById("thunderImg");
     intervalId.current = null; // Limpar o ID do intervalo
-    setCoorX(-7.210364581000806);
-    setCoorY(-39.309899574052);
+    setCoorX(coordinates.latitude);
+    setCoorY(coordinates.longitude);
     if (sparkData !== null && sparkData !== undefined) {
       console.log("tem dado");
       setText1(`${sparkData.closestPulseDistance} miles`);
@@ -33,7 +34,7 @@ function SparkData({ sparkData, setSparkData }) {
       thunderDiv.style.opacity = 1;
       thunderImg.style.background = sparkData.alertColor;
     } else {
-      getSparkData(-7.210364581000806, -39.309899574052);
+      getSparkData(coordinates.latitude,coordinates.longitude);
     }
 
     return () => {

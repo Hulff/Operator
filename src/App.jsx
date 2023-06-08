@@ -5,7 +5,7 @@ import SparkData from "./components/sparkData";
 import Login from "./components/login";
 import CabinOrder from "./components/cabinOrder";
 import CabinList from "./components/cabinList";
-import { getCodeData } from "./services/firebase";
+import { getCodeData,getCabinListData } from "./services/firebase";
 import "./App.css";
 import Options from "./components/options";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ import Loading from "./components/loading";
 function App() {
   const [cookies, setCookie] = useCookies(["code"]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCabinData, setIsLoadingCabinData] = useState(true);
   const [code, setCode] = useState(null);
   const [data, setData] = useState({});
   const [sparkData, setSparkData] = useState(null);
@@ -22,6 +23,7 @@ function App() {
 
   useEffect(() => {
     if (cookies.code) {
+      setCookie("code", cookies.code);
       setCode(cookies.code);
       console.log(cookies.code);
       const getData = async () => {
@@ -38,7 +40,20 @@ function App() {
           setIsLoading(false);
         }
       };
+      const getCabinsData = async () => {
+        try {
+          const data = await getCabinListData(cookies.code)
+          console.log(data);
+          setCabinsData(data);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setIsLoadingCabinData(false);
+
+        }
+      };
       getData();
+      getCabinsData();
     }
   }, []);
 
@@ -65,12 +80,17 @@ function App() {
             exact
             path="/Spark"
             element={
-              <>
-                <SparkData
-                  sparkData={sparkData}
-                  setSparkData={setSparkData}
-                ></SparkData>
-              </>
+              isLoading ? (
+                <Loading />
+              ) : (
+                <>
+                  <SparkData
+                    coordinates={data.coordinates}
+                    sparkData={sparkData}
+                    setSparkData={setSparkData}
+                  ></SparkData>
+                </>
+              )
             }
           />
           <Route
@@ -104,15 +124,14 @@ function App() {
             exact
             path="/ListaDeCabines"
             element={
-              isLoading ? (
+              isLoadingCabinData ? (
                 <Loading />
               ) : (
                 <>
                   <CabinList
                     code={code}
-                    data={data}
+                    cabinsData={cabinsData}
                     cabinsList={cabinsList}
-                    setData={setData}
                   />
                 </>
               )

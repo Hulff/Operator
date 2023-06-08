@@ -14,17 +14,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-export function writeCabinsData(code,n,type,vl) {
-  if (type=="snow") {
-    set(ref(database, `cabinsData/${code}/${n}`), {
-      ac:vl,
+export function writeCabinsData(code,cabin,action,value) {
+    set(ref(database, `cabinsData/${code}/${cabin}/${action}`), {
+      value:value,
     });
-  } else if (type=="window") {
-    set(ref(database, `cabinsData/${code}/${n}`), {
-      window:vl
-    });
-  }
 }
+
 export function writeCabinsOrder(code,list) {
     set(ref(database, `codes/${code}/cabinOrder`), list);
 }
@@ -39,6 +34,17 @@ export async function getCodeData(code) {
     return null;
   }
 }
+export async function getCabinListData(code) {
+  const snapshot = await get(child(ref(database), `cabinsData/${code}`));
+  if (snapshot.exists()) {
+    let data = snapshot.val();
+    return data;
+  } else {
+    console.log("No data available");
+    return null;
+  }
+}
+
 
 
 
