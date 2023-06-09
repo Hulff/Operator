@@ -227,4 +227,16 @@ h1 {
     justify-content: flex-start;
     height: 40em;
   }
+  .container-list > div > ul > li:nth-child(1) {
+    display: none;
+  }
+  .container-list > div:nth-child(2) {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+}
+
+
 }
