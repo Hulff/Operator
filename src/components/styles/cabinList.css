@@ -236,7 +236,23 @@ h1 {
     justify-content: space-between;
     align-items: flex-end;
     flex-direction: column-reverse;
-}
-
-
+  }
+  .container-list > div > ul {
+    width: 100%;
+    display: flex;
+    padding: 0;
+    margin: 5% 0;
+    list-style: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .container-list > div > ul > li {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1vh;
+  }
 }
