@@ -1,3 +1,11 @@
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: -360deg;
+  }
+}
 .container-list {
   padding: 3vh 5%;
   min-height: 24em;
@@ -17,49 +25,80 @@ h1 {
   text-align: center;
   color: white;
 }
-.container-list > ul {
-  width: 90%;
+.container-list > div:nth-child(2) {
   display: flex;
-  padding: 0;
-  margin: 5% 0;
-  list-style: none;
+  width: 80%;
+  justify-content: space-between;
+  align-items: flex-start;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: center;
-  align-items: center;
 }
-.container-list > ul > li {
-  width: 30%;
+.container-list > div:nth-child(2) > button > svg,
+.container-list > div > ul > li > button > svg {
+  pointer-events: none;
+  transition: rotate 1s;
+  rotate: 0deg;
 }
-.container-list > ul > li > button {
+.container-list > div:nth-child(2) > button {
+  margin-top: 10%;
+  height: -moz-fit-content;
   height: fit-content;
   display: flex;
   width: fit-content;
   font-weight: bold;
-  border-radius: 0 1vh 1vh 0;
+  border-radius: 1vh;
   color: white;
   width: -moz-fit-content;
   border: 1.5px solid rgb(27, 208, 249);
-  padding: 4% 6%;
+  padding: 1vh 4vh;
   background: #1e1e1e;
   font-size: 0.9em;
   text-align: center;
   transition: color 0.7s, background 0.4s, border 0.7s;
-  align-content: center;
   justify-content: center;
   align-items: center;
 }
-.container-list > ul > li > button > p {
-  margin:0;
+.container-list > div > ul {
+  width: 80%;
+  display: flex;
+  padding: 0;
+  margin: 5% 0;
+  list-style: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.container-list > div > ul > li {
+  display: flex;
+  width: 30%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1vh;
+}
+.container-list > div > ul > li:nth-child(1) {
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1vh;
+}
+.container-list > div > ul > li:nth-child(1) > h2 {
+  margin: 0;
+}
+.container-list > div > ul > li > button > p {
+  margin: 0;
   pointer-events: none;
 }
-.container-list > ul > li > button > svg {
-  pointer-events: none;
-
+.container-list > div > ul > li > button:nth-child(1) > svg {
+  rotate: 90deg;
 }
 
-.container-list > div {
+.container-list > div:nth-child(3) {
+  transition: filter 1s;
+  padding-top: 2vh;
+  border-radius: 2vh;
+  background: #1e1e1e;
   overflow-y: scroll;
   display: flex;
   width: 100%;
@@ -114,30 +153,24 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
 }
+.container-list > div > div > div:nth-child(2) > button:nth-child(2),
+.container-list > div > ul > li > button:nth-child(1) {
+  border-radius: 1vh 0 0vh 1vh;
+}
+.container-list > div > div > div:nth-child(2) > button:nth-child(4),
+.container-list > div > ul > li > button:nth-child(3) {
+  border-radius: 0 1vh 1vh 0;
+}
+.container-list > div > ul > li > button:nth-child(1),
+.container-list > div > ul > li > button:nth-child(2),
+.container-list > div > ul > li > button:nth-child(3),
+.container-list > div > div > div:nth-child(2) > button:nth-child(4),
+.container-list > div > div > div:nth-child(2) > button:nth-child(3),
 .container-list > div > div > div:nth-child(2) > button:nth-child(2) {
   height: fit-content;
   display: flex;
   width: fit-content;
   font-weight: bold;
-  border-radius: 1vh 0 0vh 1vh;
-  color: white;
-  width: -moz-fit-content;
-  border: 1.5px solid rgb(27, 208, 249);
-  padding: 4% 6%;
-  background: #1e1e1e;
-  font-size: 0.9em;
-  text-align: center;
-  transition: color 0.7s, background 0.7s, border 0.7s;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-.container-list > div > div > div:nth-child(2) > button:nth-child(3) {
-  height: fit-content;
-  display: flex;
-  width: fit-content;
-  font-weight: bold;
-  /* border-radius: 0 1vh 1vh 0; */
   color: white;
   width: -moz-fit-content;
   border: 1.5px solid rgb(27, 208, 249);
@@ -150,25 +183,16 @@ h1 {
   justify-content: center;
   align-items: center;
 }
-.container-list > div > div > div:nth-child(2) > button:nth-child(4) {
-  height: fit-content;
-  display: flex;
-  width: fit-content;
-  font-weight: bold;
-  border-radius: 0 1vh 1vh 0;
-  color: white;
-  width: -moz-fit-content;
-  border: 1.5px solid rgb(27, 208, 249);
-  padding: 4% 6%;
-  background: #1e1e1e;
-  font-size: 0.9em;
-  text-align: center;
-  transition: color 0.7s, background 0.4s, border 0.7s;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
+.container-list > div > ul > li > button:nth-child(1),
+.container-list > div > ul > li > button:nth-child(2),
+.container-list > div > ul > li > button:nth-child(3) {
+  padding: 6% 8%;
 }
-
+.container-list > div > ul > li > button:hover,
+.container-list > div:nth-child(2) > button:hover {
+  cursor: pointer;
+  background: rgb(27, 208, 249);
+}
 .container-list > div > div > div:nth-child(2) > button:nth-child(3):hover,
 .container-list > div > div > div:nth-child(2) > button:nth-child(2):hover,
 .container-list > div > div > div:nth-child(2) > button:nth-child(4):hover {
