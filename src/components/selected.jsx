@@ -13,7 +13,7 @@ const Selected = ({ code,setCabinsList, cabinsList }) => {
   return (
     <>
       {cabinsList.map((cabin) => (
-        <li>
+        <li key={`${cabin}selectedBtn`}>
           <Button func={removeCabin} name={cabin} classes={"add-cabin-button"}>
             {cabin}
           </Button>

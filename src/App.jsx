@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { getCodeData, getCabinListData } from "./services/firebase";
 import { useCookies } from "react-cookie";
+import "./App.css";
 import SparkData from "./components/sparkData";
 import Login from "./components/login";
 import CabinOrder from "./components/cabinOrder";
 import CabinList from "./components/cabinList";
-import { getCodeData, getCabinListData } from "./services/firebase";
-import "./App.css";
 import Options from "./components/options";
-import { useNavigate } from "react-router-dom";
 import Loading from "./components/loading";
+import ExportData from "./components/exportData";
 
 function App() {
   const [cookies, setCookie] = useCookies(["code"]);
@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     if (cookies.code) {
-      setCookie("code", cookies.code);
+      setCookie("code", cookies.code,{ maxAge: 60 * 60 * 24 * 7});
       setCode(cookies.code);
       console.log(cookies.code);
       const getData = async () => {
@@ -137,6 +137,15 @@ function App() {
                   />
                 </>
               )
+            }
+          />
+          <Route
+            exact
+            path="/DadosOperacionais"
+            element={
+              <>
+                <ExportData />
+              </>
             }
           />
         </Routes>

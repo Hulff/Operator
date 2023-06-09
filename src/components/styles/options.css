@@ -74,8 +74,11 @@
   color: rgb(27, 208, 249);
   background: #1e1e1e;
 }
-.img-cabin {
-  padding: 1%;
+.img-cabin,
+.img-export-data,
+.img-cabin-list,
+.img-thunder {
+  padding: 2%;
   display: flex;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);
@@ -85,28 +88,12 @@
   transition: color 0.7s, background 0.7s, border 0.7s;
 }
 .img-thunder {
-  padding: 1%;
-  display: flex;
   border-radius: 1.5vh;
-  border: 1.5px solid rgb(27, 208, 249);
-  align-items: center;
-  justify-content: center;
-  color: white;
-  transition: color 0.7s, background 0.7s, border 0.7s;
-}
-.img-cabin-list {
-  padding: 1%;
-  display: flex;
-  border-radius: 1vh;
-  border: 1.5px solid rgb(27, 208, 249);
-  align-items: center;
-  justify-content: center;
-  color: white;
-  transition: color 0.7s, background 0.7s, border 0.7s;
 }
 .img-cabin:hover,
 .img-cabin-list:hover,
-.img-thunder:hover {
+.img-thunder:hover,
+.img-export-data:hover {
   cursor: pointer;
   background: rgb(27, 208, 249);
   color: #1e1e1e;

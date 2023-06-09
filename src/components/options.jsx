@@ -1,15 +1,16 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CgChevronRight, CgFormatJustify } from "react-icons/cg";
-import {AiFillThunderbolt} from "react-icons/ai"
+import { TbFileExport } from "react-icons/tb";
+import { AiFillThunderbolt } from "react-icons/ai";
 import { MdOutlineWindow } from "react-icons/md";
 import Button from "./button";
-import "./styles/options.css"
+import "./styles/options.css";
 
-const Options = ({data}) => {
-  useEffect(()=>{
-    console.log(data)
-},[])
+const Options = ({ data }) => {
+  useEffect(() => {
+    console.log(data);
+  }, []);
   const navigate = useNavigate();
   function goToSpark() {
     navigate(`/Spark`);
@@ -20,13 +21,16 @@ const Options = ({data}) => {
   function goToCabinList() {
     navigate(`/ListaDeCabines`);
   }
+  function goToExportData() {
+    navigate(`/DadosOperacionais`);
+  }
   return (
     <>
       <div className="container-options">
         <ul>
           <li>
-          <div className="img-thunder">
-              <AiFillThunderbolt/>
+            <div className="img-thunder">
+              <AiFillThunderbolt />
             </div>
             <h2>Distancia dos raios</h2>
             <Button func={goToSpark}>
@@ -48,6 +52,15 @@ const Options = ({data}) => {
             </div>
             <h2>Lista das Cabines</h2>
             <Button func={goToCabinList}>
+              <CgChevronRight />
+            </Button>
+          </li>
+          <li>
+            <div className="img-export-data">
+              <TbFileExport />
+            </div>
+            <h2>Exportar Dados</h2>
+            <Button func={goToExportData}>
               <CgChevronRight />
             </Button>
           </li>

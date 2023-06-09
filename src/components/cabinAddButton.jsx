@@ -34,7 +34,7 @@ const CabinAddButton = ({ code,data, setCabinsList, cabinsList }) => {
   return (
     <>
       {cabinBtnList.map((cabin) => (
-        <li>
+        <li key={`${cabin}addBtn`}>
           <Button classes={"add-cabin-button"} func={() => addCabin(cabin)}>
             {cabin}
           </Button>

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./styles/login.css";
 import img from "../imgs/user-svgrepo-com.svg";
 import { getCodeData, writeCodeData } from "../services/firebase";
-const Login = ({ setIsLoading,code, setCode, setData,setCabinsList }) => {
+const Login = ({ setIsLoading, code, setCode, setData, setCabinsList }) => {
   const [cookies, setCookie, removeCookie] = useCookies(["code"]);
   useEffect(() => {
     document.getElementById("logoImg").style.opacity = 1;
@@ -15,7 +15,9 @@ const Login = ({ setIsLoading,code, setCode, setData,setCabinsList }) => {
   const codeInputData = useRef("");
   function goToList() {
     setCode(codeInputData.current.value);
-    setCookie("code",codeInputData.current.value)
+    setCookie("code", codeInputData.current.value, {
+      maxAge: 60 * 60 * 24 * 7,
+    });
     const getData = async () => {
       try {
         const data = await getCodeData(codeInputData.current.value);
@@ -26,8 +28,8 @@ const Login = ({ setIsLoading,code, setCode, setData,setCabinsList }) => {
           return;
         }
         setData(data);
-        setCabinsList(data.cabinOrder)
-        setIsLoading(false)
+        setCabinsList(data.cabinOrder);
+        setIsLoading(false);
         navigate(`/Options`);
       } catch (error) {
         console.error(error);
