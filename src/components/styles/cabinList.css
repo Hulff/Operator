@@ -210,10 +210,14 @@ h1 {
   pointer-events: none;
 }
 @media screen and (max-width: 500px) {
+}
+.container-list > div > ul > li > button:nth-child(1), .container-list > div > ul > li > button:nth-child(2), .container-list > div > ul > li > button:nth-child(3) {
+    padding: 1vh 2vh;
+}
   .container-list {
     height: 80vh;
   }
-  .container-list > div {
+  .container-list > div:nth-child(3)  {
     overflow-y: scroll;
     display: flex;
     width: 100%;
