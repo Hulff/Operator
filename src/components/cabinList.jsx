@@ -20,13 +20,14 @@ const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
   const btnFilter = useRef(null);
   const [filteredCabinList, setFilterList] = useState({});
   useEffect(() => {
+    console.log(cabinsData)
     setFilterList(cabinsData);
   }, []);
   function openFilterList() {
     btnFilter.current = document.getElementById("filterBtn");
     btnFilter.current.style.width = "0%";
     btnFilter.current.style.opacity = "0";
-    btnFilter.current.style.padding = "2vh 0.5vh";
+    btnFilter.current.style.padding = "2vh 0vh";
     btnFilter.current.style.pointerEvents = "none";
   }
   function closeFilterList() {

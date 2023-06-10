@@ -45,71 +45,75 @@ const CabinsManage = ({ code, cabinsList, cabinsData, setCabinsData }) => {
   }
   return (
     <>
-      {Object.keys(cabinsData).map((cabin) => (
-        <div key={cabin + "div"}>
-          <div>
-            <MdOutlineWindow />
+      {cabinsList.map((cabin) =>
+        cabinsData[cabin] ? (
+          <div key={cabin + "div"}>
+            <div>
+              <MdOutlineWindow />
+            </div>
+            <div>
+              <h3>{`Cabine ${cabin}`}</h3>
+              {cabinsData && cabinsData[cabin] ? (
+                <>
+                  <Button
+                    classes={
+                      cabinsData[cabin].ac
+                        ? cabinsData[cabin].ac.value
+                          ? "active"
+                          : ""
+                        : ""
+                    }
+                    name={cabin}
+                    func={active}
+                  >
+                    <BsSnow className="ac" />
+                  </Button>
+                  <Button
+                    classes={
+                      cabinsData[cabin].window
+                        ? cabinsData[cabin].window.value
+                          ? "active"
+                          : ""
+                        : ""
+                    }
+                    name={cabin}
+                    func={active}
+                  >
+                    <TbWindow className="window" />
+                  </Button>
+                  <Button
+                    classes={
+                      cabinsData[cabin].wifi
+                        ? cabinsData[cabin].wifi.value
+                          ? "active"
+                          : ""
+                        : ""
+                    }
+                    name={cabin}
+                    func={active}
+                  >
+                    <FaWifi className="wifi" />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button name={cabin} func={active}>
+                    <BsSnow className="ac" />
+                  </Button>
+                  <Button name={cabin} func={active}>
+                    <TbWindow className="window" />
+                  </Button>
+                  <Button name={cabin} func={active}>
+                    <FaWifi className="wifi" />
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
-          <div>
-            <h3>{`Cabine ${cabin}`}</h3>
-            {cabinsData && cabinsData[cabin] ? (
-              <>
-                <Button
-                  classes={
-                    cabinsData[cabin].ac
-                      ? cabinsData[cabin].ac.value
-                        ? "active"
-                        : ""
-                      : ""
-                  }
-                  name={cabin}
-                  func={active}
-                >
-                  <BsSnow className="ac" />
-                </Button>
-                <Button
-                  classes={
-                    cabinsData[cabin].window
-                      ? cabinsData[cabin].window.value
-                        ? "active"
-                        : ""
-                      : ""
-                  }
-                  name={cabin}
-                  func={active}
-                >
-                  <TbWindow className="window" />
-                </Button>
-                <Button
-                  classes={
-                    cabinsData[cabin].wifi
-                      ? cabinsData[cabin].wifi.value
-                        ? "active"
-                        : ""
-                      : ""
-                  }
-                  name={cabin}
-                  func={active}
-                >
-                  <FaWifi className="wifi" />
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button name={cabin} func={active}>
-                  <BsSnow className="ac" />
-                </Button>
-                <Button name={cabin} func={active}>
-                  <TbWindow className="window" />
-                </Button>
-                <Button name={cabin} func={active}>
-                  <FaWifi className="wifi" />
-                </Button>
-              </>
-            )}
-          </div>
-        </div>
-      ))}
+        ) : (
+          <></>
+        )
+      )}
     </>
   );
 };
