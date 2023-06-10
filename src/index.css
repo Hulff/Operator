@@ -13,7 +13,7 @@ body {
 .container {
   padding-top: 3vh;
   width: 100%;
-  min-height: 97vh;
+  min-height: 80vh;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

@@ -12,6 +12,7 @@ import Loading from "./components/loading";
 import ExportData from "./components/exportData";
 
 function App() {
+  const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(["code"]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingCabinData, setIsLoadingCabinData] = useState(true);
@@ -23,7 +24,7 @@ function App() {
 
   useEffect(() => {
     if (cookies.code) {
-      setCookie("code", cookies.code,{ maxAge: 60 * 60 * 24 * 7});
+      setCookie("code", cookies.code, { maxAge: 60 * 60 * 24 * 7 });
       setCode(cookies.code);
       console.log(cookies.code);
       const getData = async () => {
@@ -55,6 +56,9 @@ function App() {
       };
       getData();
       getCabinsData();
+    } else {
+      console.log("sem dados salvos/ cookies expirados");
+      navigate("/");
     }
   }, []);
 

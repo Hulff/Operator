@@ -45,7 +45,7 @@ const CabinsManage = ({ code, cabinsList, cabinsData, setCabinsData }) => {
   }
   return (
     <>
-      {cabinsList.map((cabin) => (
+      {Object.keys(cabinsData).map((cabin) => (
         <div key={cabin + "div"}>
           <div>
             <MdOutlineWindow />
