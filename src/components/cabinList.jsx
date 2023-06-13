@@ -143,7 +143,7 @@ const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
       try {
         const data = await getCabinListData(code);
         console.log(data);
-        setCabinsData(data);
+        setCabinsData({...cabinsData,...data});
       } catch (error) {
         console.error(error);
       } finally {

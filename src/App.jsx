@@ -24,6 +24,7 @@ function App() {
 
   useEffect(() => {
     if (cookies.code) {
+      let order;
       setCookie("code", cookies.code, { maxAge: 60 * 60 * 24 * 7 });
       setCode(cookies.code);
       console.log(cookies.code);
@@ -36,6 +37,7 @@ function App() {
           }
           if (data.cabinOrder) {
             setCabinsList(data.cabinOrder);
+            order = data.cabinOrder;
           }
         } catch (error) {
           console.error(error);
@@ -45,9 +47,39 @@ function App() {
       };
       const getCabinsData = async () => {
         try {
-          const data = await getCabinListData(cookies.code);
+          let data = await getCabinListData(cookies.code);
+          if (data != null) {
+            for (let i = 0; i < order.length; i++) {
+              if (data[i] !== order[i]) {
+                data = {
+                  ...data,
+                  [order[i]]: {
+                    ac: { value: false },
+                    window: { value: false },
+                    wifi: { value: false },
+                  },
+                };
+              }
+            }
           console.log(data);
-          setCabinsData(data);
+
+            setCabinsData(data);
+          } else {
+            if (order.length != 0) {
+              let newCabinsData = {};
+              for (let i = 0; i < order.length; i++) {
+                newCabinsData = {
+                  ...newCabinsData,
+                  [order[i]]: {
+                    ac: { value: false },
+                    window: { value: false },
+                    wifi: { value: false },
+                  },
+                };
+              }
+              setCabinsData(newCabinsData);
+            }
+          }
         } catch (error) {
           console.error(error);
         } finally {
@@ -103,7 +135,11 @@ function App() {
             path="/Options"
             element={
               <>
-                <Options data={data}></Options>
+                <Options
+                  cabinsList={cabinsList}
+                  cabinsData={cabinsData}
+                  data={data}
+                ></Options>
               </>
             }
           />
@@ -116,6 +152,8 @@ function App() {
               ) : (
                 <>
                   <CabinOrder
+                    setCabinsData={setCabinsData}
+                    cabinsData={cabinsData}
                     code={code}
                     cabinsList={cabinsList}
                     data={data}
