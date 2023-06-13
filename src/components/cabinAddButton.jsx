@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Button from "./button";
 import "./styles/cabinOrder.css";
+import { set } from "firebase/database";
+import CabinList from "./cabinList";
 import { writeCabinsOrder } from "../services/firebase";
 
-const CabinAddButton = ({
-  code,
-  setCabinsData,
-  cabinsData,
-  data,
-  setCabinsList,
-  cabinsList,
-}) => {
+const CabinAddButton = ({ code,data, setCabinsList, cabinsList }) => {
   const [cabinBtnList, setCabinsBtnList] = useState([]);
   useEffect(() => {
     console.log(data);
@@ -22,31 +17,17 @@ const CabinAddButton = ({
   }, []);
 
   function addCabin(n) {
-    let newCabinsData = { ...cabinsData };
-    if (cabinsList.length == data.cabinNumber) {
-      return;
+    if(cabinsList.length == data.cabinNumber) {
+        return
     }
-    for (let i = 0; i < cabinsList.length; i++) {
-      if (cabinsList[i] == n) {
-        return;
-      }
-    }
-    if (cabinsData) {
-      if (!cabinsData[n]) {
-        newCabinsData = {
-          ...newCabinsData,
-          [n]: {
-            ac: { value: false },
-            window: { value: false },
-            wifi: { value: false },
-          },
-        };
-      }
+    for(let i=0;i<cabinsList.length;i++) {
+        if(cabinsList[i] == n) {
+            return
+        }
     }
     const newCabinsList = [...cabinsList, n];
     console.log(newCabinsList);
-    writeCabinsOrder(code, newCabinsList);
-    setCabinsData(newCabinsData);
+    writeCabinsOrder(code,newCabinsList)
     setCabinsList(newCabinsList);
   }
 

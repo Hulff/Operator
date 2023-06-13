@@ -8,14 +8,7 @@ import Selected from "./selected";
 import { writeCabinsOrder } from "../services/firebase";
 import "./styles/cabinOrder.css";
 
-const CabinOrder = ({
-  code,
-  setCabinsData,
-  cabinsData,
-  data,
-  setCabinsList,
-  cabinsList,
-}) => {
+const CabinOrder = ({ code, data, setCabinsList, cabinsList }) => {
   function clear() {
     setCabinsList([]);
     writeCabinsOrder(code, []);
@@ -40,8 +33,6 @@ const CabinOrder = ({
         <h2>Clique para selecionar</h2>
         <ul>
           <CabinAddButton
-            setCabinsData={setCabinsData}
-            cabinsData={cabinsData}
             code={code}
             cabinsList={cabinsList}
             setCabinsList={setCabinsList}

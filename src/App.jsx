@@ -103,11 +103,7 @@ function App() {
             path="/Options"
             element={
               <>
-                <Options
-                  cabinsList={cabinsList}
-                  cabinsData={cabinsData}
-                  data={data}
-                ></Options>
+                <Options data={data}></Options>
               </>
             }
           />
@@ -120,8 +116,6 @@ function App() {
               ) : (
                 <>
                   <CabinOrder
-                    setCabinsData={setCabinsData}
-                    cabinsData={cabinsData}
                     code={code}
                     cabinsList={cabinsList}
                     data={data}

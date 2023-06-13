@@ -78,6 +78,10 @@ const CabinList = ({
     const filteredCabinData = { ...cabinsData };
     Object.keys(filteredCabinData).forEach((key) => {
       const data = filteredCabinData[key];
+      console.log(data.ac.value);
+      console.log(data.window.value);
+      console.log(data.wifi.value);
+      console.log(key);
       if (
         data.ac.value != ac.current ||
         data.window.value != window.current ||
@@ -87,6 +91,7 @@ const CabinList = ({
       } else {
       }
     });
+    console.log(filteredCabinData);
     console.log(Object.keys(filteredCabinData).length);
     setFilterList(filteredCabinData);
   }

@@ -7,11 +7,9 @@ import { MdOutlineWindow } from "react-icons/md";
 import Button from "./button";
 import "./styles/options.css";
 
-const Options = ({ data,cabinsData,cabinsList }) => {
+const Options = ({ data }) => {
   useEffect(() => {
     console.log(data);
-    console.log(cabinsData);
-    console.log(cabinsList);
   }, []);
   const navigate = useNavigate();
   function goToSpark() {
