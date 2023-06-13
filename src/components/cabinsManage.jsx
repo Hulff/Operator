@@ -8,40 +8,32 @@ import { writeCabinsData } from "../services/firebase";
 import "./styles/cabinOrder.css";
 
 const CabinsManage = ({ code, cabinsList, cabinsData, setCabinsData }) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(cabinsData);
+  }, []);
   function active(e) {
-    console.log(code);
-    console.log(e);
-    console.log(e.target.name);
-    console.log(e.target.children[0].classList.value);
-    let value;
-    if (e.target.classList.value == "" || null || undefined) {
-      value = true;
-      writeCabinsData(
-        code,
-        e.target.name,
-        e.target.children[0].classList.value,
-        true
-      );
-      e.target.classList.add("active");
-    } else {
-      value = false;
-      e.target.classList.remove("active");
-      writeCabinsData(
-        code,
-        e.target.name,
-        e.target.children[0].classList.value,
-        false
-      );
-    }
+    const { name } = e.target;
+    const className = e.target.children[0].classList.value;
+    const currentValue = e.target.classList.contains("active");
+    const value = !currentValue;
+
     const newCabinsData = {
       ...cabinsData,
-      [e.target.name]: {
-        ...cabinsData[e.target.name],
-        [e.target.children[0].classList.value]: { value: value },
+      [name]: {
+        ...cabinsData[name],
+        [className]: { value: value },
       },
     };
+
     setCabinsData(newCabinsData);
+
+    if (currentValue) {
+      e.target.classList.remove("active");
+    } else {
+      e.target.classList.add("active");
+    }
+
+    writeCabinsData(code, name, className, value);
   }
   return (
     <>

@@ -22,7 +22,7 @@ const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
   useEffect(() => {
     console.log(cabinsData)
     setFilterList(cabinsData);
-  }, []);
+  }, [cabinsData]);
   function openFilterList() {
     btnFilter.current = document.getElementById("filterBtn");
     btnFilter.current.style.width = "0%";
