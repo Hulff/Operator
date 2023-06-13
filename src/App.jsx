@@ -134,7 +134,6 @@ function App() {
               ) : (
                 <>
                   <CabinList
-                  setCabinsList={setCabinsList}
                     setCabinsData={setCabinsData}
                     code={code}
                     cabinsData={cabinsData}

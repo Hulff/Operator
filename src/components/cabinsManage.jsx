@@ -7,16 +7,8 @@ import { FaWifi } from "react-icons/fa";
 import { writeCabinsData } from "../services/firebase";
 import "./styles/cabinOrder.css";
 
-const CabinsManage = ({
-  code,
-  setCabinsList,
-  cabinsList,
-  cabinsData,
-  setCabinsData,
-}) => {
-  useEffect(() => {
-    setCabinsList(cabinsList);
-  }, [cabinsData]);
+const CabinsManage = ({ code, cabinsList, cabinsData, setCabinsData }) => {
+  useEffect(() => {}, []);
   function active(e) {
     console.log(code);
     console.log(e);
