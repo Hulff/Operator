@@ -268,14 +268,14 @@ h1 {
   padding: 6% 8%;
 }
 .container-list > div > ul > li > button:hover,
-.container-list > div:nth-child(2) > button:hover,
-.filter-div > ul > li > button:hover {
+.container-list > div:nth-child(2) > button:hover {
   cursor: pointer;
   background: rgb(27, 208, 249);
 }
 .container-list > div > div > div:nth-child(2) > button:nth-child(3):hover,
 .container-list > div > div > div:nth-child(2) > button:nth-child(2):hover,
-.container-list > div > div > div:nth-child(2) > button:nth-child(4):hover {
+.container-list > div > div > div:nth-child(2) > button:nth-child(4):hover,
+.filter-div > ul > li > button:hover {
   cursor: pointer;
 }
 .container-list > div > div > div:nth-child(2) > button:nth-child(3).active,
