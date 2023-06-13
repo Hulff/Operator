@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     if (cookies.code) {
-      let order;
       setCookie("code", cookies.code, { maxAge: 60 * 60 * 24 * 7 });
       setCode(cookies.code);
       console.log(cookies.code);
@@ -37,7 +36,6 @@ function App() {
           }
           if (data.cabinOrder) {
             setCabinsList(data.cabinOrder);
-            order = data.cabinOrder;
           }
         } catch (error) {
           console.error(error);
@@ -47,39 +45,9 @@ function App() {
       };
       const getCabinsData = async () => {
         try {
-          let data = await getCabinListData(cookies.code);
-          if (data != null) {
-            for (let i = 0; i < order.length; i++) {
-              if (data[i] !== order[i]) {
-                data = {
-                  ...data,
-                  [order[i]]: {
-                    ac: { value: false },
-                    window: { value: false },
-                    wifi: { value: false },
-                  },
-                };
-              }
-            }
+          const data = await getCabinListData(cookies.code);
           console.log(data);
-
-            setCabinsData(data);
-          } else {
-            if (order.length != 0) {
-              let newCabinsData = {};
-              for (let i = 0; i < order.length; i++) {
-                newCabinsData = {
-                  ...newCabinsData,
-                  [order[i]]: {
-                    ac: { value: false },
-                    window: { value: false },
-                    wifi: { value: false },
-                  },
-                };
-              }
-              setCabinsData(newCabinsData);
-            }
-          }
+          setCabinsData(data);
         } catch (error) {
           console.error(error);
         } finally {
@@ -172,6 +140,7 @@ function App() {
               ) : (
                 <>
                   <CabinList
+                  setCabinsList={setCabinsList}
                     setCabinsData={setCabinsData}
                     code={code}
                     cabinsData={cabinsData}

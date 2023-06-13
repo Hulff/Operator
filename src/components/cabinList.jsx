@@ -12,7 +12,13 @@ import CabinsManage from "./cabinsManage";
 import "./styles/cabinList.css";
 import { writeFullCabinsData, getCabinListData } from "../services/firebase";
 
-const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
+const CabinList = ({
+  code,
+  setCabinsList,
+  cabinsList,
+  cabinsData,
+  setCabinsData,
+}) => {
   const ac = useRef(false);
   const wifi = useRef(false);
   const window = useRef(false);
@@ -20,7 +26,7 @@ const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
   const btnFilter = useRef(null);
   const [filteredCabinList, setFilterList] = useState({});
   useEffect(() => {
-    console.log(cabinsData)
+    console.log(cabinsData);
     setFilterList(cabinsData);
   }, []);
   function openFilterList() {
@@ -143,7 +149,7 @@ const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
       try {
         const data = await getCabinListData(code);
         console.log(data);
-        setCabinsData({...cabinsData,...data});
+        setCabinsData(data);
       } catch (error) {
         console.error(error);
       } finally {
@@ -237,6 +243,7 @@ const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
         </div>
         <div id="cabinListDiv">
           <CabinsManage
+            setCabinsList={setCabinsList}
             setCabinsData={setCabinsData}
             code={code}
             cabinsData={filteredCabinList}
