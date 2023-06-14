@@ -8,7 +8,7 @@ const SaveTableData = () => {
     <>
       <div className="container-export">
         <ButtonGoBack />
-        <h1>Horas de Serviço</h1>
+        <h1>Tabela</h1>
         <div>
           <Form
             time={true}

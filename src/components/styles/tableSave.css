@@ -21,14 +21,15 @@
   width: 95%;
 }
 .container-export > div > form > div > input:nth-child(1) {
+  width: 5em;
+  min-width: fit-content;
   font-size: 1em;
-  width: fit-content;
 }
 input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(1); /* invert the color */
 }
 .container-export > div > form > div > input {
-  padding: 1.5vh 0% 1.5vh .8vh;
+  padding: 1.5vh 0% 1.5vh 0.8vh;
   font-size: 0.6em;
   border-radius: 0.7vh;
   width: 85%;
