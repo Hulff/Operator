@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Form from "./form";
+import ButtonGoBack from "./buttonGoBack"
 import "./styles/tableSave.css";
 const SaveTableData = () => {
   return (
     <>
       <div className="container-export">
+        <ButtonGoBack/>
         <h1>Tabela</h1>
         <div>
           <Form
