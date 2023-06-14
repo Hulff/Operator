@@ -53,6 +53,28 @@
   color: rgb(120, 120, 120);
   cursor: pointer;
 }
+.btn-go-back {
+  margin: 0 5%;
+  align-self: flex-end;
+  background: #1e1e1e;
+  display: flex;
+  font-weight: bold;
+  border-radius: 0.5vh;
+  color: white;
+  border: 1.5px solid rgb(27, 208, 249);
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.2vh 2vh;
+  font-size: 1.5em;
+  text-align: center;
+  transition: color 0.7s, background 0.7s, border 0.7s;
+  justify-content: center;
+  align-items: center;
+}
+.btn-go-back:hover {
+  cursor: pointer;
+  color:black;
+  background: rgb(27,208,249);
+}
 @media screen and (max-width: 500px) {
-      
 }

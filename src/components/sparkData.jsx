@@ -6,6 +6,7 @@ import Loading from "./loading";
 import ButtonControl from "./buttonSparkControl";
 import "./styles/spark.css";
 import img from "../imgs/lightning-svgrepo-com.svg";
+import ButtonGoBack from "./buttonGoBack";
 
 function SparkData({coordinates, sparkData, setSparkData }) {
   const [playBtn, setBtnAction] = useState("Play");
@@ -106,6 +107,7 @@ function SparkData({coordinates, sparkData, setSparkData }) {
   }
   return (
     <div className="container-spark">
+      <ButtonGoBack/>
       <Loading></Loading>
       <div id="thunderDiv" className="container-spark-thunder-div">
         <img

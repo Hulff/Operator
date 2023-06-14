@@ -25,7 +25,7 @@ h1 {
   text-align: center;
   color: white;
 }
-.container-list > div:nth-child(2) {
+.container-list > div:nth-child(3) {
   display: flex;
   width: 80%;
   justify-content: space-between;
@@ -33,13 +33,13 @@ h1 {
   flex-direction: row-reverse;
   flex-wrap: wrap;
 }
-.container-list > div:nth-child(2) > button > svg,
+.container-list > div:nth-child(3) > button > svg,
 .container-list > div > ul > li > button > svg {
   pointer-events: none;
   transition: rotate 1s;
   rotate: 0deg;
 }
-.container-list > div:nth-child(2) > button {
+.container-list > div:nth-child(3) > button {
   margin-top: 10%;
   height: -moz-fit-content;
   height: fit-content;
@@ -173,7 +173,7 @@ h1 {
   rotate: 90deg;
 }
 
-.container-list > div:nth-child(3) {
+.container-list > div:nth-child(4) {
   transition: filter 1s;
   padding-top: 2vh;
   border-radius: 2vh;
@@ -268,7 +268,7 @@ h1 {
   padding: 6% 8%;
 }
 .container-list > div > ul > li > button:hover,
-.container-list > div:nth-child(2) > button:hover {
+.container-list > div:nth-child(3) > button:hover {
   cursor: pointer;
   background: rgb(27, 208, 249);
 }
@@ -306,7 +306,7 @@ h1 {
   .container-list {
     height: 80vh;
   }
-  .container-list > div:nth-child(3) {
+  .container-list > div:nth-child(4) {
     overflow-y: scroll;
     display: flex;
     width: 100%;
@@ -318,7 +318,7 @@ h1 {
   .container-list > div > ul > li:nth-child(1) {
     display: none;
   }
-  .container-list > div:nth-child(2) {
+  .container-list > div:nth-child(3) {
     display: flex;
     width: 80%;
     justify-content: space-between;

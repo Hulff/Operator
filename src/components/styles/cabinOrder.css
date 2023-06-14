@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: flex-start;
 }
-.container-order > ul:nth-child(2) > li > button {
+.container-order > ul:nth-child(3) > li > button {
   margin: 10%;
   width: 92%;
   font-weight: bold;
@@ -33,18 +33,18 @@
   text-align: center;
   transition: color 0.7s, background 0.7s, border 0.7s;
 }
-.container-order > div:nth-child(3) {
+.container-order > div:nth-child(4) {
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
-.container-order > div:nth-child(3) > button > svg {
+.container-order > div:nth-child(4) > button > svg {
   stroke-width: 1px;
   font-size: 1em;
 }
-.container-order > div:nth-child(3) > button {
+.container-order > div:nth-child(4) > button {
   display: flex;
   width: 12%;
   font-weight: bold;
@@ -60,7 +60,7 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.container-order > ul:nth-child(5) > li > button {
+.container-order > ul:nth-child(6) > li > button {
   animation: show 1s linear forwards;
 
   margin: 10%;
@@ -76,14 +76,14 @@
   text-align: center;
   transition: color 0.7s, background 0.7s, border 0.7s;
 }
-.container-order > ul:nth-child(2) > li > button:hover,
-.container-order > div:nth-child(3) > button:hover {
+.container-order > ul:nth-child(3) > li > button:hover,
+.container-order > div:nth-child(4) > button:hover {
   cursor: pointer;
   color: white;
   background: rgb(27, 208, 249);
   border: 1.5px solid #1e1e1e;
 }
-.container-order > ul:nth-child(5) > li > button:hover {
+.container-order > ul:nth-child(6) > li > button:hover {
   cursor: pointer;
   color: white;
   background: #1e1e1e;
@@ -95,7 +95,7 @@ h2 {
   animation: show 1s linear forwards;
   font-size: 3vh;
 }
-.container-order > ul:nth-child(2) {
+.container-order > ul:nth-child(3) {
   width: 80%;
   display: flex;
   padding: 0;
@@ -107,7 +107,7 @@ h2 {
   align-content: center;
   align-items: center;
 }
-.container-order > ul:nth-child(5) {
+.container-order > ul:nth-child(6) {
   width: 80%;
   display: flex;
   padding: 0;
@@ -127,7 +127,7 @@ li {
   li {
     width: 20%;
   }
-  .container-order > ul:nth-child(2) {
+  .container-order > ul:nth-child(4) {
     width: 90%;
     display: flex;
     padding: 0;
@@ -139,7 +139,7 @@ li {
     align-content: center;
     align-items: center;
   }
-  .container-order > div:nth-child(3) > button {
+  .container-order > div:nth-child(4) > button {
     display: flex;
     width: 30%;
     font-weight: bold;
@@ -155,7 +155,7 @@ li {
     align-items: center;
     justify-content: space-evenly;
   }
-  .container-order > ul:nth-child(5) {
+  .container-order > ul:nth-child(6) {
     width: 100%;
     display: flex;
     padding: 0;
@@ -181,7 +181,7 @@ li {
     align-items: center;
     justify-content: flex-start;
   }
-  .container-order > ul:nth-child(2) > li > button {
+  .container-order > ul:nth-child(3) > li > button {
     margin: 10%;
     width: 90%;
     font-weight: bold;
@@ -195,7 +195,7 @@ li {
     text-align: center;
     transition: color 0.7s, background 0.7s, border 0.7s;
   }
-  .container-order > ul:nth-child(5) > li > button {
+  .container-order > ul:nth-child(6) > li > button {
     animation: show 1s linear forwards;
     margin: 10%;
     width: 90%;

@@ -7,6 +7,7 @@ import CabinAddButton from "./cabinAddButton";
 import Selected from "./selected";
 import { writeCabinsOrder } from "../services/firebase";
 import "./styles/cabinOrder.css";
+import ButtonGoBack from "./buttonGoBack";
 
 const CabinOrder = ({ code, data, setCabinsList, cabinsList }) => {
   function clear() {
@@ -16,6 +17,7 @@ const CabinOrder = ({ code, data, setCabinsList, cabinsList }) => {
   return (
     <>
       <div className="container-order">
+        <ButtonGoBack/>
         <h1>Ordem das cabines</h1>
         <ul>
           <Selected

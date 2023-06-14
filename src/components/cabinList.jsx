@@ -11,6 +11,7 @@ import Button from "./button";
 import CabinsManage from "./cabinsManage";
 import "./styles/cabinList.css";
 import { writeFullCabinsData, getCabinListData } from "../services/firebase";
+import ButtonGoBack from "./buttonGoBack";
 
 const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
   const ac = useRef(false);
@@ -158,6 +159,7 @@ const CabinList = ({ code, cabinsList, cabinsData, setCabinsData }) => {
   return (
     <>
       <div className="container-list">
+        <ButtonGoBack/>
         <h1>Lista de cabines</h1>
         <div>
           <Button id="sincronizeBtn" func={sincronize}>
