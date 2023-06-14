@@ -7,6 +7,7 @@ const Form = ({
   func,
   id,
   type,
+  time,
   hidden,
   classes,
   name,
@@ -17,13 +18,21 @@ const Form = ({
   }, []);
   return (
     <form name={name} id={id} className={classes}>
+      {time ? (
+        <div>
+          <input type="time" />
+        </div>
+      ) : (
+        <></>
+      )}
       {Array.from({ length: names.length }).map((_, n) => (
         <div key={names[n]}>
-          <label htmlFor={`${names[n]}`}>{`Campo ${names[n]}`}</label>
+          <label htmlFor={`${names[n]}`}>{`${names[n]}`}</label>
           <input
             type={type}
+            id={`${names[n]}`}
             name={`${names[n]}`}
-            placeholder={`Preencha o campo ${names[n]}`}
+            placeholder={`Preencha o ${names[n]}`}
           />
         </div>
       ))}

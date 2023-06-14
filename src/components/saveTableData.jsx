@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import Form from "./form";
-import ButtonGoBack from "./buttonGoBack"
+import ButtonGoBack from "./buttonGoBack";
+import Button from "./button";
 import "./styles/tableSave.css";
 const SaveTableData = () => {
   return (
     <>
       <div className="container-export">
-        <ButtonGoBack/>
-        <h1>Tabela</h1>
+        <ButtonGoBack />
+        <h1>Horas de Serviço</h1>
         <div>
           <Form
+            time={true}
             type={"number"}
             names={[
               "N° de Cabines em Linha",
@@ -24,6 +26,7 @@ const SaveTableData = () => {
             ]}
           />
         </div>
+        <Button>Salvar</Button>
       </div>
     </>
   );

@@ -2,26 +2,33 @@
   overflow-y: scroll;
   overflow-x: clip;
   padding: 3vh 0 2vh 0;
-  height: 65vh;
+  height: 55vh;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);
   margin: 0% 15%;
   width: 80%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-start;
 }
 .container-export > div > form > div > label {
-  margin: 2% 0%;
+  margin: 1vh 0%;
   padding-left: 5%;
   font-size: 0.8em;
   color: white;
   display: block;
   width: 95%;
 }
+.container-export > div > form > div > input:nth-child(1) {
+  font-size: 1em;
+  width: fit-content;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* invert the color */
+}
 .container-export > div > form > div > input {
-  padding: 2% 0% 2% 3%;
+  padding: 1.5vh 0% 1.5vh .8vh;
   font-size: 0.6em;
   border-radius: 0.7vh;
   width: 85%;
@@ -29,4 +36,27 @@
   background: #1e1e1e;
   border: 1.5px solid rgb(27, 208, 249);
   color: white;
+}
+.container-export > button:nth-child(4) {
+  margin: 5% 5%;
+  align-self: flex-end;
+  background: #1e1e1e;
+  display: flex;
+  font-weight: bold;
+  border-radius: 0.5vh;
+  color: white;
+  border: 1.5px solid rgb(27, 208, 249);
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.8vh 2vh;
+  font-size: 0.7em;
+  text-align: center;
+  transition: color 0.7s, background 0.7s, border 0.7s;
+  justify-content: center;
+  align-items: center;
+}
+.container-export > button:nth-child(4):hover {
+  cursor: pointer;
+  background: rgb(27, 208, 249);
+  color: black;
 }

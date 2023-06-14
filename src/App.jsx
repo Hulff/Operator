@@ -11,6 +11,7 @@ import Options from "./components/options";
 import Loading from "./components/loading";
 import RegisterData from "./components/registerData";
 import SaveTableData from "./components/saveTableData";
+import SaveOprData from "./components/saveOprData";
 
 function App() {
   const navigate = useNavigate();
@@ -156,7 +157,14 @@ function App() {
               </>
             }
           />
-          <Route path="/SalvarDadosOperacionais" element={<h1>a</h1>} />
+          <Route
+            path="/SalvarDadosOperacionais"
+            element={
+              <>
+                <SaveOprData />
+              </>
+            }
+          />
         </Routes>
       </div>
     </>
