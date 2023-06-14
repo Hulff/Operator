@@ -7,7 +7,7 @@
   }
 }
 .container-order {
-  padding: 3vh 5%;
+  padding: 0 5%;
   min-height: 24em;
   height: fit-content;
   border-radius: 1vh;
@@ -168,7 +168,7 @@ li {
     align-items: center;
   }
   .container-order {
-    padding: 3vh 5%;
+    padding: 0 5%;
     min-height: 55vh;
     height: -moz-fit-content;
     height: fit-content;

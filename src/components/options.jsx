@@ -6,6 +6,7 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import { MdOutlineWindow, MdPlaylistAdd } from "react-icons/md";
 import Button from "./button";
 import "./styles/options.css";
+import ButtonGoBack from "./buttonGoBack";
 
 const Options = ({ data }) => {
   useEffect(() => {
@@ -30,6 +31,7 @@ const Options = ({ data }) => {
   return (
     <>
       <div className="container-options">
+        <ButtonGoBack />
         <ul>
           <li>
             <div className="img-thunder">
