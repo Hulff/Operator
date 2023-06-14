@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CgChevronRight, CgFormatJustify, CgAddR } from "react-icons/cg";
-import { TbFileExport,TbTableImport} from "react-icons/tb";
+import { TbFileExport, TbTableImport } from "react-icons/tb";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { MdOutlineWindow, MdPlaylistAdd } from "react-icons/md";
 import Button from "./button";
@@ -23,6 +23,9 @@ const Options = ({ data }) => {
   }
   function goToExportData() {
     navigate(`/DadosOperacionais`);
+  }
+  function goToRegisterData() {
+    navigate(`/RegistrarDadosOperacionais`);
   }
   return (
     <>
@@ -60,7 +63,7 @@ const Options = ({ data }) => {
               <TbTableImport />
             </div>
             <h2>Registrar Dados</h2>
-            <Button func={goToExportData}>
+            <Button func={goToRegisterData}>
               <CgChevronRight />
             </Button>
           </li>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ButtonGoBack = ({ dataInfo, id, type, hidden, name }) => {
   const navigate = useNavigate()
   function goBack() {
-    navigate("/Options");
+    navigate(-1);
   }
 
   return (

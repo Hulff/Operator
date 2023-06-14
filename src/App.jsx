@@ -9,7 +9,8 @@ import CabinOrder from "./components/cabinOrder";
 import CabinList from "./components/cabinList";
 import Options from "./components/options";
 import Loading from "./components/loading";
-import ExportData from "./components/exportData";
+import RegisterData from "./components/registerData";
+import SaveTableData from "./components/saveTableData";
 
 function App() {
   const navigate = useNavigate();
@@ -144,14 +145,18 @@ function App() {
             }
           />
           <Route
-            exact
-            path="/DadosOperacionais"
+            path="/RegistrarDadosOperacionais"
+            element={<RegisterData />}
+          />
+          <Route
+            path="/SalvarTabela"
             element={
               <>
-                <ExportData />
+                <SaveTableData />
               </>
             }
           />
+          <Route path="/SalvarDadosOperacionais" element={<h1>a</h1>} />
         </Routes>
       </div>
     </>

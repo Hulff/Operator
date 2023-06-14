@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 const Form = ({
   names,
-  fields,
   dataInfo,
   children,
   func,
@@ -13,18 +12,22 @@ const Form = ({
   name,
 }) => {
   useEffect(() => {
-    console.log(fields);
+    console.log(names.length);
     console.log(names);
   }, []);
   return (
     <form name={name} id={id} className={classes}>
-    {Array.from({ length: fields }).map((_, n) => (
-      <div key={names[n]}>
-        <label htmlFor={`campo${names[n]}`}>{`Campo ${names[n]}`}</label>
-        <input name={`campo${names[n]}`} placeholder={`Preencha o campo ${names[n]}`} />
-      </div>
-    ))}
-  </form>
+      {Array.from({ length: names.length }).map((_, n) => (
+        <div key={names[n]}>
+          <label htmlFor={`${names[n]}`}>{`Campo ${names[n]}`}</label>
+          <input
+            type={type}
+            name={`${names[n]}`}
+            placeholder={`Preencha o campo ${names[n]}`}
+          />
+        </div>
+      ))}
+    </form>
   );
 };
 
