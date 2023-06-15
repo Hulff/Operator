@@ -151,11 +151,7 @@ function App() {
           />
           <Route
             path="/SalvarTabela"
-            element={
-              <>
-                <SaveTableData />
-              </>
-            }
+            element={isLoading ? <Loading /> : <SaveTableData code={code} />}
           />
           <Route
             path="/SalvarDadosOperacionais"
