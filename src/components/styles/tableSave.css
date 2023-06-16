@@ -52,7 +52,7 @@
   width: 90%;
   margin: 0;
   opacity: 0;
-  padding: 2vh 1vh;
+  padding: 0;
   overflow-y: clip;
   overflow-x: scroll;
   color: white;
@@ -147,7 +147,7 @@
   .container-export > #divTable {
     display: flex;
     width: 80%;
-    height: 20vh;
+    height: 0vh;
     justify-content: center;
   }
   #divTable > table > thead > tr > th,
