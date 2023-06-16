@@ -4,10 +4,18 @@ import ButtonGoBack from "./buttonGoBack";
 import Button from "./button";
 import "./styles/tableSave.css";
 import { writeTableData } from "../services/firebase";
+import { FaUndo } from "react-icons/fa";
+import TablePreview from "./tablePreview";
 const SaveTableData = ({ code }) => {
   useEffect(() => {
+    divForm.current = document.getElementById("divForm");
+    divTable.current = document.getElementById("divTable");
     console.log(code);
   }, []);
+  const [tableData, setTableData] = useState({});
+  const [btnText, setText] = useState("Salvar");
+  const divForm = useRef(null);
+  const divTable = useRef(null);
   const time = useRef(null);
   const cabinNumber = useRef(null);
   const speed = useRef(null);
@@ -20,7 +28,8 @@ const SaveTableData = ({ code }) => {
   const pressEmergency = useRef(null);
   const carPosition = useRef(null);
   const outsideTemp = useRef(null);
-  function registerData() {
+  function registerData(e) {
+    console.log(e.target);
     const newData = {
       horario: time.current.value,
       nDeCabines: cabinNumber.current.value,
@@ -37,14 +46,29 @@ const SaveTableData = ({ code }) => {
     };
     console.log(newData);
     console.log(new Date().toLocaleString("pt-BR"));
-    writeTableData(code, new Date().toLocaleString("pt-BR"), newData);
+    console.log(divForm.current);
+    console.log(divTable.current);
+    divForm.current.style.animation = "hideDiv 1s linear forwards";
+    divTable.current.style.animation = "showDiv 1s linear forwards";
+    setText("Confirmar");
+    setTableData(newData);
+    if (btnText == "Confirmar") {
+      console.log("ok Salvo");
+      writeTableData(code, new Date().toLocaleString("pt-BR"), newData);
+    }
+  }
+  function cancel() {
+    divTable.current.style.animation = "hideDiv 1s linear forwards";
+    divForm.current.style.animation = "showDiv 1s linear forwards";
+    setText("Salvar");
+
   }
   return (
     <>
       <div className="container-export">
         <ButtonGoBack />
         <h1>Tabela</h1>
-        <div>
+        <div id="divForm" style={{ "--start-height": `55vh` }}>
           <Form
             time={[true, time]}
             type={"number"}
@@ -76,7 +100,31 @@ const SaveTableData = ({ code }) => {
             ]}
           />
         </div>
-        <Button func={registerData}>Salvar</Button>
+        <div id="divControl">
+          <Button func={cancel} hidden={true}>
+            <FaUndo /> Cancelar
+          </Button>
+          <Button func={registerData}>{btnText}</Button>
+        </div>
+        <div id="divTable" style={{ "--start-height": `18vh` }}>
+          <TablePreview
+            data={tableData}
+            headerName={[
+              "Horário",
+              "Número de Cabines",
+              "Velocidade [m/s]",
+              "Vento na Torre #10 [m/s]",
+              "Carro tensor 1 - Tensão [KN]",
+              "Carro tensor 2 - Tensão [KN]",
+              "Carro tensor 1 - Pressão [Bar]",
+              "Carro tensor 2 - Pressão [Bar]",
+              "Pressão do freio de serviço [Bar]",
+              "Pressão do freio de emergência [Bar]",
+              "Posição do carro tensor [cm]",
+              "Temperatura ambiente [°C]",
+            ]}
+          ></TablePreview>
+        </div>
       </div>
     </>
   );

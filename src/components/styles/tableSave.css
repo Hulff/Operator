@@ -1,4 +1,30 @@
-.container-export > div {
+@keyframes hideDiv {
+  0% {
+    opacity: 1;
+    height: var(--start-height);
+    padding: 3vh 0 2vh 0;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
+}
+
+@keyframes showDiv {
+  0% {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+  }
+  100% {
+    opacity: 1;
+    height: var(--start-height);
+    padding: 3vh 0 2vh 0;
+  }
+}
+
+.container-export > #divForm {
   overflow-y: scroll;
   overflow-x: clip;
   padding: 3vh 0 2vh 0;
@@ -7,6 +33,32 @@
   border: 1.5px solid rgb(27, 208, 249);
   margin: 0% 15%;
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.container-export > #divControl {
+  height: 10vh;
+  display: flex;
+  margin: 0 10%;
+  width: 80%;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.container-export > #divTable {
+  height: 0;
+  width: 90%;
+  margin: 0;
+  opacity: 0;
+  padding: 2vh 1vh;
+  overflow-y: clip;
+  overflow-x: scroll;
+  color: white;
+  border: 1.5px solid rgb(27, 208, 249);
+  border-radius: 1vh;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -47,8 +99,8 @@
   border: 1.5px solid rgb(27, 208, 249);
   color: white;
 }
-.container-export > button:nth-child(4) {
-  margin: 5% 5%;
+.container-export > div > button {
+  margin: 1vh 4% 3vh 0;
   align-self: flex-end;
   background: #1e1e1e;
   display: flex;
@@ -65,8 +117,41 @@
   justify-content: center;
   align-items: center;
 }
-.container-export > button:nth-child(4):hover {
+.container-export > div > button:hover {
   cursor: pointer;
   background: rgb(27, 208, 249);
   color: black;
+}
+.container-export > div > button > svg {
+  pointer-events: none;
+  margin-right: 1vh;
+}
+.container-export > div > button:hover > svg {
+  animation: spin 1s infinite linear;
+}
+
+#divTable > table {
+  border-collapse: collapse;
+}
+#divTable > table > thead > tr > th,
+#divTable > table > tbody > tr > td {
+  font-size: 0.5em;
+  text-align: center;
+  border-spacing: 0px;
+  margin: 0;
+  padding: 0.4vh 1vh;
+  border: 1.5px rgb(27, 208, 249) solid;
+  width: calc(100% / 3); /* Divide igualmente a largura das colunas */
+}
+@media screen and (max-width: 500px) {
+  .container-export > #divTable {
+    display: flex;
+    width: 80%;
+    height: 20vh;
+    justify-content: center;
+  }
+  #divTable > table > thead > tr > th,
+  #divTable > table > tbody > tr > td {
+    font-size: 0.7em;
+  }
 }

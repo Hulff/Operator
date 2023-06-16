@@ -155,11 +155,8 @@ function App() {
           />
           <Route
             path="/SalvarDadosOperacionais"
-            element={
-              <>
-                <SaveOprData />
-              </>
-            }
+            element={isLoading ? <Loading /> : <SaveOprData code={code} />}
+
           />
         </Routes>
       </div>

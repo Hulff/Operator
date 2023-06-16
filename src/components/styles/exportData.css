@@ -1,10 +1,11 @@
 .container-export {
+  height: fit-content;
   padding: 0 0 2vh 0;
   min-height: 70vh;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);
-  margin: 0% 15%;
-  width: 70%;
+  margin: 0% 10%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,6 +80,6 @@
     font-size: 0.75em;
   }
   .container-export {
-    margin:5% 15%;
+    margin: 5% 10%;
   }
 }
