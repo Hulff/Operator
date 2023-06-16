@@ -33,6 +33,13 @@ export function writeTableData(code,time,data) {
     horarioDeRegistro:time
   });
 }
+export function writeOprData(code,time,data) {
+  let date = new Date()
+  set(ref(database, `dadosOperacionais/${code}/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`), {
+    data:data,
+    horarioDeRegistro:time
+  });
+}
 
 export async function getCodeData(code) {
   const snapshot = await get(child(ref(database), `codes/${code}`));

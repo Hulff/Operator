@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useRef, useState } from "react";
 import Form from "./form";
+import { useNavigate } from "react-router-dom";
 import ButtonGoBack from "./buttonGoBack";
 import Button from "./button";
 import "./styles/tableSave.css";
@@ -10,12 +11,15 @@ const SaveTableData = ({ code }) => {
   useEffect(() => {
     divForm.current = document.getElementById("divForm");
     divTable.current = document.getElementById("divTable");
+    btnCancel.current = document.getElementById("btnCancel");
     console.log(code);
   }, []);
+  const navigate = useNavigate()
   const [tableData, setTableData] = useState({});
   const [btnText, setText] = useState("Salvar");
   const divForm = useRef(null);
   const divTable = useRef(null);
+  const btnCancel = useRef(null);
   const time = useRef(null);
   const cabinNumber = useRef(null);
   const speed = useRef(null);
@@ -50,18 +54,21 @@ const SaveTableData = ({ code }) => {
     console.log(divTable.current);
     divForm.current.style.animation = "hideDiv 1s linear forwards";
     divTable.current.style.animation = "showDiv 1s linear forwards";
+    btnCancel.current.style.opacity = "1";
     setText("Confirmar");
     setTableData(newData);
     if (btnText == "Confirmar") {
       console.log("ok Salvo");
       writeTableData(code, new Date().toLocaleString("pt-BR"), newData);
+      navigate("/Options")
+
     }
   }
   function cancel() {
     divTable.current.style.animation = "hideDiv 1s linear forwards";
     divForm.current.style.animation = "showDiv 1s linear forwards";
+    btnCancel.current.style.opacity = "0";
     setText("Salvar");
-
   }
   return (
     <>
@@ -101,7 +108,7 @@ const SaveTableData = ({ code }) => {
           />
         </div>
         <div id="divControl">
-          <Button func={cancel} hidden={true}>
+          <Button id={"btnCancel"} func={cancel} hidden={"hidden"}>
             <FaUndo /> Cancelar
           </Button>
           <Button func={registerData}>{btnText}</Button>

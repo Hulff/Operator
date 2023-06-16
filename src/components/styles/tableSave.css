@@ -24,7 +24,8 @@
   }
 }
 
-.container-export > #divForm {
+.container-export > #divForm,
+.container-export > #divOprForm {
   overflow-y: scroll;
   overflow-x: clip;
   padding: 3vh 0 2vh 0;
@@ -47,7 +48,8 @@
   justify-content: flex-end;
   align-items: center;
 }
-.container-export > #divTable {
+.container-export > #divTable,
+.container-export > #divOprTable {
   height: 0;
   width: 90%;
   margin: 0;
@@ -99,6 +101,9 @@
   border: 1.5px solid rgb(27, 208, 249);
   color: white;
 }
+.container-export > div > button:nth-child(1) {
+  opacity: 0;
+}
 .container-export > div > button {
   margin: 1vh 4% 3vh 0;
   align-self: flex-end;
@@ -113,7 +118,7 @@
   padding: 0.8vh 2vh;
   font-size: 0.7em;
   text-align: center;
-  transition: color 0.7s, background 0.7s, border 0.7s;
+  transition: color 0.7s, background 0.7s, border 0.7s, opacity 1s;
   justify-content: center;
   align-items: center;
 }
@@ -143,8 +148,22 @@
   border: 1.5px rgb(27, 208, 249) solid;
   width: calc(100% / 3); /* Divide igualmente a largura das colunas */
 }
+#divOprTable > table {
+  border-collapse: collapse;
+}
+#divOprTable > table > thead > tr > th,
+#divOprTable > table > tbody > tr > td {
+  font-size: 0.6em;
+  text-align: center;
+  border-spacing: 0px;
+  margin: 0;
+  padding: 0.4vh 1vh;
+  border: 1.5px rgb(27, 208, 249) solid;
+  width: calc(100% / 3); /* Divide igualmente a largura das colunas */
+}
 @media screen and (max-width: 500px) {
-  .container-export > #divTable {
+  .container-export > #divTable,
+  .container-export > #divOprTable {
     display: flex;
     width: 80%;
     height: 0vh;
