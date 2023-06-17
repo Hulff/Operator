@@ -7,7 +7,7 @@
   }
 }
 .container-list {
-  min-height: 24em;
+  min-height: 70vh;
   height: fit-content;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);

@@ -158,6 +158,10 @@ function App() {
             element={isLoading ? <Loading /> : <SaveOprData code={code} />}
 
           />
+          <Route
+            path="/EcportarDados"
+            element={<RegisterData />}
+          />
         </Routes>
       </div>
     </>

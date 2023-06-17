@@ -1,5 +1,5 @@
 .container-spark {
-  min-height: 20em;
+  min-height: 70vh;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);
   margin: 0% 10%;
@@ -65,7 +65,7 @@
 }
 @media screen and (max-width: 500px) {
   .container-spark {
-    min-height: 60vh;
+    min-height: 70vh;
     border-radius: 1vh;
     border: 1.5px solid rgb(27, 208, 249);
     margin: 5% 10%;

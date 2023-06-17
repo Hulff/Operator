@@ -23,7 +23,7 @@ const Options = ({ data }) => {
     navigate(`/ListaDeCabines`);
   }
   function goToExportData() {
-    navigate(`/DadosOperacionais`);
+    navigate(`/ExportarDados`);
   }
   function goToRegisterData() {
     navigate(`/RegistrarDadosOperacionais`);
