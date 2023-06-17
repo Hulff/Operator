@@ -12,8 +12,11 @@ const SaveOprData = ({ code }) => {
     divOprForm.current = document.getElementById("divOprForm");
     divOprTable.current = document.getElementById("divOprTable");
     btnOprCancel.current = document.getElementById("btnOprCancel");
+    setStartHeight(divOprTable.current.offsetHeight);
   }, []);
-  const navigate = useNavigate()
+  const [startHeight, setStartHeight] = useState(0);
+
+  const navigate = useNavigate();
   const [oprData, setOprData] = useState({});
   const [btnText, setText] = useState("confirmar");
   const travelTime = useRef(null);
@@ -25,10 +28,10 @@ const SaveOprData = ({ code }) => {
   const btnOprCancel = useRef(null);
   function registerData(e) {
     const newData = {
-      SistemaViagem: travelTime.current.value + " horas",
-      SistemaParado: stopTime.current.value + " horas",
-      OprPassaegeiroViagem: oprTypePassengerTravel.current.value + " horas",
-      OprPassaegeiroParado: oprTypePassengerStop.current.value + " horas",
+      SistemaViagem: travelTime.current.value + " Horas",
+      SistemaParado: stopTime.current.value + " Horas",
+      OprPassaegeiroViagem: oprTypePassengerTravel.current.value + " Horas",
+      OprPassaegeiroParado: oprTypePassengerStop.current.value + " Horas",
     };
     console.log(newData);
     console.log(new Date().toLocaleString("pt-BR"));
@@ -40,7 +43,7 @@ const SaveOprData = ({ code }) => {
     if (btnText == "Confirmar") {
       console.log("ok Salvo");
       writeOprData(code, new Date().toLocaleString("pt-BR"), newData);
-      navigate("/Options")
+      navigate("/Options");
     }
   }
   function cancel() {
@@ -54,7 +57,10 @@ const SaveOprData = ({ code }) => {
       <div className="container-export">
         <ButtonGoBack />
         <h1>Dados Operacionais</h1>
-        <div id="divOprForm" style={{ "--start-height": `55vh` }}>
+        <div
+          id="divOprForm"
+          style={{ "--start-height": `55vh`, "--start-pad": `3vh 0 2vh 0` }}
+        >
           <Form
             type={"number"}
             names={[
@@ -77,7 +83,13 @@ const SaveOprData = ({ code }) => {
           </Button>
           <Button func={registerData}>{btnText}</Button>
         </div>
-        <div id="divOprTable" style={{ "--start-height": `15vh` }}>
+        <div
+          id="divOprTable"
+          style={{
+            "--start-height": `${startHeight}px`,
+            "--start-pad": `0 0 3.1vh 0`,
+          }}
+        >
           <TablePreview
             data={oprData}
             headerName={[

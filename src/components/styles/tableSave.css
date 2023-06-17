@@ -2,7 +2,7 @@
   0% {
     opacity: 1;
     height: var(--start-height);
-    padding: 3vh 0 2vh 0;
+    padding: var(--startpad);
   }
   100% {
     opacity: 0;
@@ -20,7 +20,7 @@
   100% {
     opacity: 1;
     height: var(--start-height);
-    padding: 3vh 0 2vh 0;
+    padding: var(--start-pad);
   }
 }
 
@@ -50,7 +50,7 @@
 }
 .container-export > #divTable,
 .container-export > #divOprTable {
-  height: 0;
+  height: fit-content;
   width: 90%;
   margin: 0;
   opacity: 0;
@@ -166,8 +166,8 @@
   .container-export > #divOprTable {
     display: flex;
     width: 80%;
-    height: 0vh;
-    justify-content: center;
+    height: fit-content;
+    justify-content: flex-start;
   }
   #divTable > table > thead > tr > th,
   #divTable > table > tbody > tr > td {

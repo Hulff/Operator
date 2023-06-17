@@ -12,9 +12,11 @@ const SaveTableData = ({ code }) => {
     divForm.current = document.getElementById("divForm");
     divTable.current = document.getElementById("divTable");
     btnCancel.current = document.getElementById("btnCancel");
+    setStartHeight(divTable.current.offsetHeight);
     console.log(code);
   }, []);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [startHeight, setStartHeight] = useState(0);
   const [tableData, setTableData] = useState({});
   const [btnText, setText] = useState("Salvar");
   const divForm = useRef(null);
@@ -60,8 +62,7 @@ const SaveTableData = ({ code }) => {
     if (btnText == "Confirmar") {
       console.log("ok Salvo");
       writeTableData(code, new Date().toLocaleString("pt-BR"), newData);
-      navigate("/Options")
-
+      navigate("/Options");
     }
   }
   function cancel() {
@@ -75,7 +76,10 @@ const SaveTableData = ({ code }) => {
       <div className="container-export">
         <ButtonGoBack />
         <h1>Tabela</h1>
-        <div id="divForm" style={{ "--start-height": `55vh` }}>
+        <div
+          id="divForm"
+          style={{ "--start-height": `55vh`, "--start-pad": `3vh 0 2vh 0` }}
+        >
           <Form
             time={[true, time]}
             type={"number"}
@@ -113,7 +117,13 @@ const SaveTableData = ({ code }) => {
           </Button>
           <Button func={registerData}>{btnText}</Button>
         </div>
-        <div id="divTable" style={{ "--start-height": `18vh` }}>
+        <div
+          id="divTable"
+          style={{
+            "--start-height": `${startHeight}px`,
+            "--start-pad": `0 0 3.1vh 0`,
+          }}
+        >
           <TablePreview
             data={tableData}
             headerName={[
