@@ -156,11 +156,15 @@ function App() {
           <Route
             path="/SalvarDadosOperacionais"
             element={isLoading ? <Loading /> : <SaveOprData code={code} />}
-
+          />
+          <Route path="/ExportarDados" element={<exportData />} />
+          <Route
+            path="/ExportarDadosDaTabela"
+            element={isLoading ? <Loading /> : <exportTableData code={code} />}
           />
           <Route
-            path="/EcportarDados"
-            element={<RegisterData />}
+            path="/ExportarDadosOperacionais"
+            element={isLoading ? <Loading /> : <exportOprData code={code} />}
           />
         </Routes>
       </div>

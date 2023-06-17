@@ -12,7 +12,7 @@ const SaveOprData = ({ code }) => {
     divOprForm.current = document.getElementById("divOprForm");
     divOprTable.current = document.getElementById("divOprTable");
     btnOprCancel.current = document.getElementById("btnOprCancel");
-    setStartHeight(divOprTable.current.offsetHeight);
+    setStartHeight(divOprTable.current.children[0].offsetHeight);
   }, []);
   const [startHeight, setStartHeight] = useState(0);
 
@@ -87,7 +87,7 @@ const SaveOprData = ({ code }) => {
           id="divOprTable"
           style={{
             "--start-height": `${startHeight}px`,
-            "--start-pad": `0 0 3.1vh 0`,
+            "--start-pad": `0 0 3.3vh 0`,
           }}
         >
           <TablePreview
@@ -95,8 +95,8 @@ const SaveOprData = ({ code }) => {
             headerName={[
               "Sistema [Viagem]",
               "Sistema [Parada]",
-              "Tipo de operação - Passageiros[Viagem]",
-              "Tipo de operação Passageiros[Parada]",
+              "Tipo de operação - Passageiros [Viagem]",
+              "Tipo de operação Passageiros [Parada]",
             ]}
           />
         </div>

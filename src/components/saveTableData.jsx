@@ -12,7 +12,7 @@ const SaveTableData = ({ code }) => {
     divForm.current = document.getElementById("divForm");
     divTable.current = document.getElementById("divTable");
     btnCancel.current = document.getElementById("btnCancel");
-    setStartHeight(divTable.current.offsetHeight);
+    setStartHeight(divTable.current.children[0].offsetHeight);
     console.log(code);
   }, []);
   const navigate = useNavigate();
@@ -121,7 +121,7 @@ const SaveTableData = ({ code }) => {
           id="divTable"
           style={{
             "--start-height": `${startHeight}px`,
-            "--start-pad": `0 0 3.1vh 0`,
+            "--start-pad": `0 0 3.3vh 0`,
           }}
         >
           <TablePreview

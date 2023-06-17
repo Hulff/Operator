@@ -6,7 +6,7 @@ const TablePreview = ({ headerName, data }) => {
   }, [data, headerName]);
   return (
     <>
-      <table>
+      <table >
         <thead>
           <tr>
             {headerName.map((n) => (

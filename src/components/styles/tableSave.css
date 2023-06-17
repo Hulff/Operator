@@ -50,7 +50,7 @@
 }
 .container-export > #divTable,
 .container-export > #divOprTable {
-  height: fit-content;
+  height: 0;
   width: 90%;
   margin: 0;
   opacity: 0;
@@ -60,7 +60,6 @@
   color: white;
   border: 1.5px solid rgb(27, 208, 249);
   border-radius: 1vh;
-
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -166,7 +165,7 @@
   .container-export > #divOprTable {
     display: flex;
     width: 80%;
-    height: fit-content;
+    height: 0;
     justify-content: flex-start;
   }
   #divTable > table > thead > tr > th,
