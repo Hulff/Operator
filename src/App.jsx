@@ -9,6 +9,8 @@ import CabinOrder from "./components/cabinOrder";
 import CabinList from "./components/cabinList";
 import Options from "./components/options";
 import Loading from "./components/loading";
+import ExportData from "./components/exportData";
+import ExportTableData from "./components/exportTableData";
 import RegisterData from "./components/registerData";
 import SaveTableData from "./components/saveTableData";
 import SaveOprData from "./components/saveOprData";
@@ -157,15 +159,18 @@ function App() {
             path="/SalvarDadosOperacionais"
             element={isLoading ? <Loading /> : <SaveOprData code={code} />}
           />
-          <Route path="/ExportarDados" element={<exportData />} />
           <Route
-            path="/ExportarDadosDaTabela"
-            element={isLoading ? <Loading /> : <exportTableData code={code} />}
+            path="/ExportarDados"
+            element={isLoading ? <Loading /> : <ExportData code={code} />}
           />
           <Route
+            path="/ExportarTabela"
+            element={isLoading ? <Loading /> : <ExportTableData code={code} />}
+          />
+          {/* <Route
             path="/ExportarDadosOperacionais"
-            element={isLoading ? <Loading /> : <exportOprData code={code} />}
-          />
+            element={isLoading ? <Loading /> : <ExportOprData code={code} />}
+          /> */}
         </Routes>
       </div>
     </>

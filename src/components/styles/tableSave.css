@@ -90,6 +90,9 @@
   border: 1.5px solid rgb(27, 208, 249);
   color: white;
 }
+.container-export > div > form > select:hover {
+  cursor: pointer;
+}
 .container-export > div > form > div > input {
   padding: 1.5vh 0% 1.5vh 0.8vh;
   font-size: 0.6em;
@@ -159,6 +162,15 @@
   padding: 0.4vh 1vh;
   border: 1.5px rgb(27, 208, 249) solid;
   width: calc(100% / 3); /* Divide igualmente a largura das colunas */
+}
+.div-form-export {
+  width: 80%;
+}
+.div-form-export > form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 @media screen and (max-width: 500px) {
   .container-export > #divTable,

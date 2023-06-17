@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, remove, get, child } from "firebase/database";
+import { getDatabase, ref, set, get, child } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD6VQEUWKSNPxEMaRb4bU3_ToCxyRkvGKk",
@@ -26,19 +26,35 @@ export function writeFullCabinsData(code, obj) {
 export function writeCabinsOrder(code, list) {
   set(ref(database, `codes/${code}/cabinOrder`), list);
 }
-export function writeTableData(code,time,data) {
-  let date = new Date()
-  set(ref(database, `tabelas/${code}/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}/${data.horario}`), {
-    data:data,
-    horarioDeRegistro:time
-  });
+export function writeTableData(code, time, data) {
+  let date = new Date();
+  set(
+    ref(
+      database,
+      `tabelas/${code}/${date.getFullYear()}/${
+        date.getMonth() + 1
+      }/${date.getDate()}/${data.horario}`
+    ),
+    {
+      data: data,
+      horarioDeRegistro: time,
+    }
+  );
 }
-export function writeOprData(code,time,data) {
-  let date = new Date()
-  set(ref(database, `dadosOperacionais/${code}/${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`), {
-    data:data,
-    horarioDeRegistro:time
-  });
+export function writeOprData(code, time, data) {
+  let date = new Date();
+  set(
+    ref(
+      database,
+      `dadosOperacionais/${code}/${date.getFullYear()}/${
+        date.getMonth() + 1
+      }/${date.getDate()}`
+    ),
+    {
+      data: data,
+      horarioDeRegistro: time,
+    }
+  );
 }
 
 export async function getCodeData(code) {
@@ -58,6 +74,52 @@ export async function getCabinListData(code) {
     return data;
   } else {
     console.log("No data available");
+    return null;
+  }
+}
+export async function getTableData(code, ano, mes, start, end) {
+  const snapshot = await get(
+    child(ref(database), `tabelas/${code}/${ano}/${mes}`)
+  );
+  if (snapshot.exists()) {
+    let dbValue = snapshot.val();
+    let values = Object.keys(snapshot.val());
+    let values2 = values.filter(
+      (n) => parseFloat(n) >= start && parseFloat(n) <= end
+    );
+    const data = values2.reduce((result, n) => {
+      return {
+        ...result,
+        [n]: dbValue[n],
+      };
+    }, {});
+    return data;
+  } else {
+    console.log("no data available");
+    return null;
+  }
+}
+export async function getTableAvailableDays(code, ano, mes) {
+  const snapshot = await get(
+    child(ref(database), `tabelas/${code}/${ano}/${mes}`)
+  );
+  if (snapshot.exists()) {
+    let values = Object.keys(snapshot.val());
+    return values;
+  } else {
+    console.log("no data available");
+    return null;
+  }
+}
+export async function getTableAvailableMonths(code, ano) {
+  const snapshot = await get(
+    child(ref(database), `tabelas/${code}/${ano}`)
+  );
+  if (snapshot.exists()) {
+    let values = Object.keys(snapshot.val());
+    return values;
+  } else {
+    console.log("no data available");
     return null;
   }
 }
