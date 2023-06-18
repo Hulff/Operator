@@ -217,7 +217,7 @@
 @media screen and (max-width: 500px) {
   .container-export > #divExport > form > select {
     width: 100%;
-    margin: 0;
+    margin: 1vh 0;
   }
   .container-export > #divTable,
   .container-export > #divOprTable {
