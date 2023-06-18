@@ -1,5 +1,6 @@
 import React from "react";
 const ExportOptions = ({
+  id,
   monthList,
   refList,
   daysList,
@@ -16,9 +17,12 @@ const ExportOptions = ({
   };
   return (
     <>
-      <div className="div-form-export">
+      <div id={id} className="div-form-export"  style={{
+            "--start-height": `25vh`,
+            "--start-pad": `0 0 .5vh 0`,
+          }}>
         <form className="form-export">
-          <select onChange={handleYearInputChange} >
+          <select onChange={handleYearInputChange}>
             <option value="" disabled selected hidden>
               Selecione o ano
             </option>
@@ -28,7 +32,7 @@ const ExportOptions = ({
               </option>
             ))}
           </select>
-          <select onChange={handleMonthInputChange} >
+          <select onChange={handleMonthInputChange}>
             <option value="" disabled selected hidden>
               Selecione o mês
             </option>

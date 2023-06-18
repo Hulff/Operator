@@ -3,11 +3,13 @@
     opacity: 1;
     height: var(--start-height);
     padding: var(--startpad);
+    pointer-events: all;
   }
   100% {
     opacity: 0;
     height: 0;
     padding: 0;
+    pointer-events: none;
   }
 }
 
@@ -16,11 +18,13 @@
     opacity: 0;
     height: 0;
     padding: 0;
+    pointer-events: none;
   }
   100% {
     opacity: 1;
     height: var(--start-height);
     padding: var(--start-pad);
+    pointer-events: all;
   }
 }
 
@@ -56,6 +60,22 @@
   opacity: 0;
   padding: 0;
   overflow-y: clip;
+  overflow-x: scroll;
+  color: white;
+  border: 1.5px solid rgb(27, 208, 249);
+  border-radius: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.container-export > #divTableExport {
+  height: 0;
+  width: 90%;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  overflow-y: scroll;
   overflow-x: scroll;
   color: white;
   border: 1.5px solid rgb(27, 208, 249);
@@ -138,11 +158,14 @@
   animation: spin 1s infinite linear;
 }
 
-#divTable > table {
+#divTable > table,
+#divTableExport > table {
   border-collapse: collapse;
 }
 #divTable > table > thead > tr > th,
-#divTable > table > tbody > tr > td {
+#divTable > table > tbody > tr > td,
+#divTableExport > table > thead > tr > th,
+#divTableExport > table > tbody > tr > td {
   font-size: 0.5em;
   text-align: center;
   border-spacing: 0px;
@@ -192,6 +215,10 @@
   align-items: center;
 }
 @media screen and (max-width: 500px) {
+  .container-export > div > form > select {
+    width: 100%;
+    margin: 0;
+  }
   .container-export > #divTable,
   .container-export > #divOprTable {
     display: flex;

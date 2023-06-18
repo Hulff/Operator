@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { FaUndo } from "react-icons/fa";
 import "./styles/exportData.css";
 import ButtonGoBack from "./buttonGoBack";
 import Button from "./button";
@@ -11,8 +12,15 @@ import ExportOptions from "./exportOptions";
 import TableShow from "./tableShow";
 const ExportTableData = ({ code }) => {
   useEffect(() => {
+    divForm.current = document.getElementById("divExport");
+    divTable.current = document.getElementById("divTableExport");
+    btnCancel.current = document.getElementById("btnCancel");
     console.log(code);
   }, []);
+  const [btnText, setText] = useState("Salvar");
+  const divForm = useRef(null);
+  const divTable = useRef(null);
+  const btnCancel = useRef(null);
   const [data, setData] = useState({});
   const [availDayData, setAvailableDayData] = useState([]);
   const [availMonthData, setMonthData] = useState([]);
@@ -69,17 +77,23 @@ const ExportTableData = ({ code }) => {
         console.log("fim do get");
       }
     };
-    console.log(year);
-    console.log(month);
-    console.log(start.current.value);
-    console.log(end.current.value);
     if (
       start.current.value !== null &&
       end.current.value !== null &&
       start.current.value < end.current.value
     ) {
+      divForm.current.style.animation = "hideDiv 1s linear forwards";
+      divTable.current.style.animation = "showDiv 1s linear forwards";
+      btnCancel.current.style.opacity = "1";
+      setText("Confirmar");
       getData(code, year, month, start.current.value, end.current.value);
     }
+  }
+  function cancel() {
+    divTable.current.style.animation = "hideDiv 1s linear forwards";
+    divForm.current.style.animation = "showDiv 1s linear forwards";
+    btnCancel.current.style.opacity = "0";
+    setText("Salvar");
   }
   return (
     <>
@@ -87,34 +101,47 @@ const ExportTableData = ({ code }) => {
         <ButtonGoBack />
         <h1>Exportar Tabela</h1>
         <ExportOptions
+          id={"divExport"}
           handleYearInputChange={handleYearInputChange}
           handleMonthInputChange={handleMonthInputChange}
           monthList={availMonthData}
           daysList={availDayData}
           refList={[start, end]}
         />
-        <Button id="btnImport" func={importData}>
-          Buscar
-        </Button>
-      </div>
-      <div id="divTable">
-        <TableShow
-          headerName={[
-            "Horário",
-            "Número de Cabines",
-            "Velocidade [m/s]",
-            "Vento na Torre #10 [m/s]",
-            "Carro tensor 1 - Tensão [KN]",
-            "Carro tensor 2 - Tensão [KN]",
-            "Carro tensor 1 - Pressão [Bar]",
-            "Carro tensor 2 - Pressão [Bar]",
-            "Pressão do freio de serviço [Bar]",
-            "Pressão do freio de emergência [Bar]",
-            "Posição do carro tensor [cm]",
-            "Temperatura ambiente [°C]",
-          ]}
-          data={data}
-        />
+        <div id="divControl">
+          <Button id={"btnCancel"} func={cancel} hidden={"hidden"}>
+            <FaUndo /> Cancelar
+          </Button>
+          <Button func={importData}>{btnText}</Button>
+        </div>
+        <div
+          id="divTableExport"
+          style={{
+            "--start-height": `45vh`,
+            "--start-pad": `0 0 .5vh 0`,
+          }}
+        >
+          <TableShow
+            headerName={[
+              "Data",
+              "Horário",
+              "Número de Cabines",
+              "Velocidade [m/s]",
+              "Vento na Torre #10 [m/s]",
+              "Carro tensor 1 - Tensão [KN]",
+              "Carro tensor 2 - Tensão [KN]",
+              "Carro tensor 1 - Pressão [Bar]",
+              "Carro tensor 2 - Pressão [Bar]",
+              "Pressão do freio de serviço [Bar]",
+              "Pressão do freio de emergência [Bar]",
+              "Posição do carro tensor [cm]",
+              "Temperatura ambiente [°C]",
+            ]}
+            data={data}
+            year={year}
+            month={month}
+          />
+        </div>
       </div>
     </>
   );
