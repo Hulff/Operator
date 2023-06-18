@@ -46,7 +46,7 @@ const SaveTableData = ({ code }) => {
       CarroTensor1Pressao: p1.current.value + " Bar",
       CarroTensor2Pressao: p2.current.value + " Bar",
       pressaoServiço: pressService.current.value + " Bar",
-      pressaoEmergencia: pressEmergency.current.value + "Bar",
+      pressaoEmergencia: pressEmergency.current.value + " Bar",
       posiçãoDoCarro: carPosition.current.value + " cm",
       temperaturaAmbiente: outsideTemp.current.value + " °C",
     };
