@@ -46,7 +46,7 @@
 .container-export > #divControl {
   height: 10vh;
   display: flex;
-  margin: 0 10%;
+  margin: 2vh 10%;
   width: 80%;
   flex-direction: row;
   justify-content: flex-end;
@@ -105,7 +105,7 @@
   min-width: 10%;
   border-radius: 0.7vh;
   width: fit-content;
-  margin: 0 5%;
+  margin: 1vh 5%;
   background: #1e1e1e;
   border: 1.5px solid rgb(27, 208, 249);
   color: white;
@@ -125,6 +125,7 @@
 }
 .container-export > div > button:nth-child(1) {
   opacity: 0;
+  pointer-events: none;
 }
 .container-export > div > button {
   margin: 1vh 4% 3vh 0;
@@ -150,7 +151,8 @@
   background: rgb(27, 208, 249);
   color: black;
 }
-.container-export > div > button > svg {
+.container-export > div > button > svg,
+#btnImport > svg {
   pointer-events: none;
   margin-right: 1vh;
 }
@@ -210,6 +212,8 @@
   padding: 1vh 2vh;
   font-size: 0.7em;
   text-align: center;
+  opacity: 0;
+  pointer-events: none;
   transition: color 0.7s, background 0.7s, border 0.7s, opacity 1s;
   justify-content: center;
   align-items: center;

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-const TableShow = ({ headerName, data, month, year }) => {
+const TableShow = ({ headerName, data, month, year, setRef }) => {
   useEffect(() => {
     console.log(data);
     console.log(headerName);
   }, [data, headerName]);
   return (
     <>
-      <table>
+      <table ref={setRef}>
         <thead>
           <tr>
             {headerName.map((n) => (
@@ -18,7 +18,7 @@ const TableShow = ({ headerName, data, month, year }) => {
           {Object.keys(data).map((n) => (
             <>
               <tr>
-                <td rowSpan={Object.keys(data[n]).length+1}>
+                <td rowSpan={Object.keys(data[n]).length + 1}>
                   {`${n}/${month}/${year}`}
                 </td>
               </tr>

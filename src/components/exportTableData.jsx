@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import * as XLSX from "xlsx";
 import { FaUndo } from "react-icons/fa";
+import { TbFileDownload, TbDownload } from "react-icons/tb";
 import "./styles/exportData.css";
 import ButtonGoBack from "./buttonGoBack";
 import Button from "./button";
@@ -15,17 +17,20 @@ const ExportTableData = ({ code }) => {
     divForm.current = document.getElementById("divExport");
     divTable.current = document.getElementById("divTableExport");
     btnCancel.current = document.getElementById("btnCancel");
+    btnDownload.current = document.getElementById("btnImport");
     console.log(code);
   }, []);
   const [btnText, setText] = useState("Salvar");
-  const divForm = useRef(null);
-  const divTable = useRef(null);
-  const btnCancel = useRef(null);
   const [data, setData] = useState({});
   const [availDayData, setAvailableDayData] = useState([]);
   const [availMonthData, setMonthData] = useState([]);
   const [year, setYear] = useState(0);
   const [month, setMonth] = useState(0);
+  const tableRef = useRef(null);
+  const divForm = useRef(null);
+  const divTable = useRef(null);
+  const btnCancel = useRef(null);
+  const btnDownload = useRef(null);
   const start = useRef(null);
   const end = useRef(null);
   function handleYearInputChange(e) {
@@ -85,6 +90,11 @@ const ExportTableData = ({ code }) => {
       divForm.current.style.animation = "hideDiv 1s linear forwards";
       divTable.current.style.animation = "showDiv 1s linear forwards";
       btnCancel.current.style.opacity = "1";
+      btnCancel.current.style.pointerEvents = "all";
+      btnDownload.current.style.pointerEvents = "all";
+
+      btnDownload.current.style.opacity = "1";
+
       setText("Confirmar");
       getData(code, year, month, start.current.value, end.current.value);
     }
@@ -93,11 +103,37 @@ const ExportTableData = ({ code }) => {
     divTable.current.style.animation = "hideDiv 1s linear forwards";
     divForm.current.style.animation = "showDiv 1s linear forwards";
     btnCancel.current.style.opacity = "0";
+    btnCancel.current.style.pointerEvents = "none";
+    btnDownload.current.style.opacity = "0";
+    btnDownload.current.style.pointerEvents = "none";
     setText("Salvar");
+  }
+  function convertTableToXLSX() {
+    // Get table element using querySelector
+    const table = tableRef.current;
+    // Convert table to workbook
+    const workbook = XLSX.utils.table_to_book(table);
+    // Convert workbook to XLSX file
+    const xlsxOutput = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    // Save the file
+    saveXLSXFile(xlsxOutput);
+  }
+  function saveXLSXFile(data) {
+    const blob = new Blob([data], { type: "application/octet-stream" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `DadosOperaçãoJDO/${start.current.value}/${end.current.value}/${month}/${year}.xlsx`;
+    link.click();
+    URL.revokeObjectURL(url);
   }
   return (
     <>
       <div className="container-export">
+        j
         <ButtonGoBack />
         <h1>Exportar Tabela</h1>
         <ExportOptions
@@ -140,8 +176,13 @@ const ExportTableData = ({ code }) => {
             data={data}
             year={year}
             month={month}
+            setRef={tableRef}
           />
         </div>
+        <Button id={"btnImport"} func={convertTableToXLSX}>
+          <TbDownload />
+          Baixar
+        </Button>
       </div>
     </>
   );
