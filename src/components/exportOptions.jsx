@@ -1,5 +1,11 @@
 import React from "react";
-const ExportOptions = ({ monthList, refList, daysList }) => {
+const ExportOptions = ({
+  monthList,
+  refList,
+  daysList,
+  handleYearInputChange,
+  handleMonthInputChange,
+}) => {
   const check = (n) => {
     for (let i = 0; i < monthList.length; i++) {
       if (n == monthList[i]) {
@@ -12,14 +18,20 @@ const ExportOptions = ({ monthList, refList, daysList }) => {
     <>
       <div className="div-form-export">
         <form className="form-export">
-          <select ref={refList[0]}>
+          <select onChange={handleYearInputChange} >
+            <option value="" disabled selected hidden>
+              Selecione o ano
+            </option>
             {[2023, 2024, 2025].map((n) => (
               <option value={n} name={n}>
                 {n}
               </option>
             ))}
           </select>
-          <select ref={refList[1]}>
+          <select onChange={handleMonthInputChange} >
+            <option value="" disabled selected hidden>
+              Selecione o mês
+            </option>
             {[
               { nome: "Janeiro", valor: "1" },
               { nome: "Fevereiro", valor: "2" },
@@ -43,12 +55,18 @@ const ExportOptions = ({ monthList, refList, daysList }) => {
               )
             )}
           </select>
-          <select ref={refList[2]}>
+          <select ref={refList[0]}>
+            <option value="" disabled selected hidden>
+              Selecione o dia de inicio busca
+            </option>
             {daysList.map((n) => (
               <option name={n}>{n}</option>
             ))}
           </select>
-          <select ref={refList[3]}>
+          <select ref={refList[1]}>
+            <option value="" disabled selected hidden>
+              Selecione o dia do fim da busca
+            </option>
             {daysList.map((n) => (
               <option name={n}>{n}</option>
             ))}
