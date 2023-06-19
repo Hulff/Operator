@@ -17,12 +17,12 @@ const ExportOptions = ({
   };
   return (
     <>
-      <div id={id} className="div-form-export"  style={{
-            "--start-height": `25vh`,
+      <div id={id[0]} className="div-form-export"  style={{
+            "--start-height": `30vh`,
             "--start-pad": `0 0 .5vh 0`,
           }}>
         <form className="form-export">
-          <select onChange={handleYearInputChange}>
+          <select id={[id[4]]}  onChange={handleYearInputChange}>
             <option value="" disabled selected hidden>
               Selecione o ano
             </option>
@@ -32,7 +32,7 @@ const ExportOptions = ({
               </option>
             ))}
           </select>
-          <select onChange={handleMonthInputChange}>
+          <select id={id[1]} onChange={handleMonthInputChange}>
             <option value="" disabled selected hidden>
               Selecione o mês
             </option>
@@ -59,7 +59,7 @@ const ExportOptions = ({
               )
             )}
           </select>
-          <select ref={refList[0]}>
+          <select id={id[2]} ref={refList[0]}>
             <option value="" disabled selected hidden>
               Selecione o dia de inicio busca
             </option>
@@ -67,7 +67,7 @@ const ExportOptions = ({
               <option name={n}>{n}</option>
             ))}
           </select>
-          <select ref={refList[1]}>
+          <select id={id[3]} ref={refList[1]}>
             <option value="" disabled selected hidden>
               Selecione o dia do fim da busca
             </option>

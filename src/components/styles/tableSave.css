@@ -27,6 +27,34 @@
     pointer-events: all;
   }
 }
+@keyframes showSelect {
+  0% {
+    border: 0px;
+    height: 0vh;
+    padding: 0;
+    pointer-events: none;
+  }
+  100% {
+    height: 6vh;
+    padding: 1.5vh 0% 1.5vh 0.8vh;
+    border: 1.5px solid rgb(27, 208, 249);
+    pointer-events: all;
+  }
+}
+@keyframes hideSelect {
+  0% {
+    height: 6vh;
+    padding: 1.5vh 0% 1.5vh 0.8vh;
+    border: 1.5px solid rgb(27, 208, 249);
+    pointer-events: all;
+  }
+  100% {
+    border: 0px;
+    height: 0vh;
+    padding: 0;
+    pointer-events: none;
+  }
+}
 
 .container-export > #divForm,
 .container-export > #divOprForm {
@@ -101,17 +129,24 @@
 .container-export > div > form > select {
   text-align: center;
   padding: 1.5vh 0% 1.5vh 0.8vh;
+  border: 1.5px solid rgb(27, 208, 249);
   font-size: 0.7em;
   min-width: 10%;
   border-radius: 0.7vh;
   width: fit-content;
   margin: 1vh 5%;
   background: #1e1e1e;
-  border: 1.5px solid rgb(27, 208, 249);
   color: white;
+  height: 6vh;
 }
 .container-export > div > form > select:hover {
   cursor: pointer;
+}
+.container-export > #divExport > form > select:nth-child(1n + 2) {
+  height: 0vh;
+  padding: 0vh;
+  border: 0px;
+  pointer-events: none;
 }
 .container-export > div > form > div > input {
   padding: 1.5vh 0% 1.5vh 0.8vh;

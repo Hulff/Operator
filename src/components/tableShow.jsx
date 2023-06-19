@@ -30,11 +30,11 @@ const TableShow = ({ headerName, data, month, year, setRef }) => {
                   <td>{data[n][m].data.ventoNaTorre10}</td>
                   <td>{data[n][m].data.CarroTensor1}</td>
                   <td>{data[n][m].data.CarroTensor2}</td>
-                  <td>{data[n][m].data.posiçãoDoCarro}</td>
                   <td>{data[n][m].data.CarroTensor1Pressao}</td>
                   <td>{data[n][m].data.CarroTensor2Pressao}</td>
                   <td>{data[n][m].data.pressaoEmergencia}</td>
                   <td>{data[n][m].data.pressaoServiço}</td>
+                  <td>{data[n][m].data.posiçãoDoCarro}</td>
                   <td>{data[n][m].data.temperaturaAmbiente}</td>
                 </tr>
               ))}
