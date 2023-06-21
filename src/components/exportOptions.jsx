@@ -6,6 +6,7 @@ const ExportOptions = ({
   daysList,
   handleYearInputChange,
   handleMonthInputChange,
+  tableMode
 }) => {
   const check = (n) => {
     for (let i = 0; i < monthList.length; i++) {
@@ -59,7 +60,10 @@ const ExportOptions = ({
               )
             )}
           </select>
-          <select id={id[2]} ref={refList[0]}>
+          {
+          tableMode ? (
+            <>
+            <select id={id[2]} ref={refList[0]}>
             <option value="" disabled selected hidden>
               Selecione o dia de inicio busca
             </option>
@@ -75,6 +79,21 @@ const ExportOptions = ({
               <option name={n}>{n}</option>
             ))}
           </select>
+            </>
+          ):(
+            <>
+            <select id={id[2]} ref={refList[0]}>
+            <option value="" disabled selected hidden>
+              Selecione o dia da busca
+            </option>
+            {daysList.map((n) => (
+              <option name={n}>{n}</option>
+            ))}
+          </select>
+            </>
+          )
+          }
+         
         </form>
       </div>
     </>

@@ -11,6 +11,7 @@ import Options from "./components/options";
 import Loading from "./components/loading";
 import ExportData from "./components/exportData";
 import ExportTableData from "./components/exportTableData";
+import ExportOprData from "./components/exportOprData";
 import RegisterData from "./components/registerData";
 import SaveTableData from "./components/saveTableData";
 import SaveOprData from "./components/saveOprData";
@@ -167,10 +168,10 @@ function App() {
             path="/ExportarTabela"
             element={isLoading ? <Loading /> : <ExportTableData code={code} />}
           />
-          {/* <Route
+          <Route
             path="/ExportarDadosOperacionais"
             element={isLoading ? <Loading /> : <ExportOprData code={code} />}
-          /> */}
+          />
         </Routes>
       </div>
     </>

@@ -56,7 +56,6 @@ export function writeOprData(code, time, data) {
     }
   );
 }
-
 export async function getCodeData(code) {
   const snapshot = await get(child(ref(database), `codes/${code}`));
   if (snapshot.exists()) {
@@ -118,6 +117,42 @@ export async function getTableAvailableMonths(code, ano) {
   if (snapshot.exists()) {
     let values = Object.keys(snapshot.val());
     return values;
+  } else {
+    console.log("no data available");
+    return null;
+  }
+}
+export async function getOprAvailableMonths(code, ano) {
+  const snapshot = await get(
+    child(ref(database), `dadosOperacionais/${code}/${ano}`)
+  );
+  if (snapshot.exists()) {
+    let values = Object.keys(snapshot.val());
+    return values;
+  } else {
+    console.log("no data available");
+    return null;
+  }
+}
+export async function getOprAvailableDays(code, ano, mes) {
+  const snapshot = await get(
+    child(ref(database), `dadosOperacionais/${code}/${ano}/${mes}`)
+  );
+  if (snapshot.exists()) {
+    let values = Object.keys(snapshot.val());
+    return values;
+  } else {
+    console.log("no data available");
+    return null;
+  }
+}
+export async function getOprData(code, ano, mes, day) {
+  const snapshot = await get(
+    child(ref(database), `dadosOperacionais/${code}/${ano}/${mes}/${day}`)
+  );
+  if (snapshot.exists()) { 
+    const data = snapshot.val()
+    return data;
   } else {
     console.log("no data available");
     return null;

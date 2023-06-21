@@ -6,13 +6,13 @@ import "./styles/exportData.css";
 import ButtonGoBack from "./buttonGoBack";
 import Button from "./button";
 import {
-  getTableAvailableDays,
-  getTableAvailableMonths,
-  getTableData,
+  getOprAvailableDays,
+  getOprAvailableMonths,
+  getOprData,
 } from "../services/firebase";
 import ExportOptions from "./exportOptions";
 import TableShow from "./tableShow";
-const ExportTableData = ({ code }) => {
+const ExportOprData = ({ code }) => {
   useEffect(() => {
     divForm.current = document.getElementById("divExport");
     divTable.current = document.getElementById("divTableExport");
@@ -21,11 +21,10 @@ const ExportTableData = ({ code }) => {
     select1.current = document.getElementById("select1");
     select2.current = document.getElementById("select2");
     select3.current = document.getElementById("select3");
-    select4.current = document.getElementById("select4");
     console.log(code);
   }, []);
   const [btnText, setText] = useState("Salvar");
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   const [availDayData, setAvailableDayData] = useState([]);
   const [availMonthData, setMonthData] = useState([]);
   const [year, setYear] = useState(0);
@@ -38,15 +37,13 @@ const ExportTableData = ({ code }) => {
   const select1 = useRef(null);
   const select2 = useRef(null);
   const select3 = useRef(null);
-  const select4 = useRef(null);
-  const start = useRef(null);
-  const end = useRef(null);
+  const day = useRef(null);
   function handleYearInputChange(e) {
     console.log(e.target.value);
     setMonthData([]);
     const getAvailableMonthData = async (code, year) => {
       try {
-        const data = await getTableAvailableMonths(code, year);
+        const data = await getOprAvailableMonths(code, year);
         console.log(data);
         if (data != null) {
           setMonthData(data);
@@ -59,7 +56,7 @@ const ExportTableData = ({ code }) => {
     };
     setYear(parseFloat(e.target.value));
     getAvailableMonthData(code, parseFloat(e.target.value)).then(() => {
-      select1.current.style.animation = "showSelect 0.5s linear forwards";
+      select2.current.style.animation = "showSelect 0.5s linear forwards";
     });
   }
   function handleMonthInputChange(e) {
@@ -67,7 +64,7 @@ const ExportTableData = ({ code }) => {
 
     const getAvailableDayData = async (code, year, month) => {
       try {
-        const data = await getTableAvailableDays(code, year, month);
+        const data = await getOprAvailableDays(code, year, month);
         console.log(data);
         if (data != null) {
           setAvailableDayData(data);
@@ -81,14 +78,13 @@ const ExportTableData = ({ code }) => {
 
     setMonth(parseFloat(e.target.value));
     getAvailableDayData(code, year, parseFloat(e.target.value)).then(() => {
-      select2.current.style.animation = "showSelect 0.5s linear forwards";
       select3.current.style.animation = "showSelect 0.5s linear forwards";
     });
   }
   function importData() {
-    const getData = async (code, year, month, start, end) => {
+    const getData = async (code, year, month, day) => {
       try {
-        const data = await getTableData(code, year, month, start, end);
+        const data = await getOprData(code, year, month, day);
         console.log(data);
         if (data != null) {
           setData(data);
@@ -99,26 +95,19 @@ const ExportTableData = ({ code }) => {
         console.log("fim do get");
       }
     };
-    if (
-      start.current.value !== null &&
-      end.current.value !== null &&
-      start.current.value < end.current.value
-    ) {
+    if (day.current.value !== null) {
       select1.current.style.animation = "hideSelect 0.5s linear forwards";
       select2.current.style.animation = "hideSelect 0.5s linear forwards";
       select3.current.style.animation = "hideSelect 0.5s linear forwards";
-      select4.current.style.animation = "hideSelect 0.5s linear forwards";
       divForm.current.style.animation = "hideDiv 0.5s linear forwards";
-      getData(code, year, month, start.current.value, end.current.value).then(
-        () => {
-          setText("Confirmar");
-          divTable.current.style.animation = "showDiv 1s linear forwards";
-          btnCancel.current.style.opacity = "1";
-          btnCancel.current.style.pointerEvents = "all";
-          btnDownload.current.style.pointerEvents = "all";
-          btnDownload.current.style.opacity = "1";
-        }
-      );
+      getData(code, year, month, day.current.value).then(() => {
+        setText("Confirmar");
+        divTable.current.style.animation = "showDiv 1s linear forwards";
+        btnCancel.current.style.opacity = "1";
+        btnCancel.current.style.pointerEvents = "all";
+        btnDownload.current.style.pointerEvents = "all";
+        btnDownload.current.style.opacity = "1";
+      });
     }
   }
   function cancel() {
@@ -128,13 +117,12 @@ const ExportTableData = ({ code }) => {
     btnCancel.current.style.pointerEvents = "none";
     btnDownload.current.style.opacity = "0";
     btnDownload.current.style.pointerEvents = "none";
+    select2.current.value = "";
     select1.current.value = "";
-    select4.current.value = "";
-    select4.current.style.animation = "showSelect 0.5s linear forwards";
+    select1.current.style.animation = "showSelect 0.5s linear forwards";
     setMonthData([]);
     setAvailableDayData([]);
-    start.current.value = "";
-    end.current.value = "";
+    day.current.value = "";
     setText("Salvar");
   }
   function convertTableToXLSX() {
@@ -166,7 +154,7 @@ const ExportTableData = ({ code }) => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `DadosOperaçãoJDO/${start.current.value}/${end.current.value}/${month}/${year}.xlsx`;
+    link.download = `DadosOperaçãoJDO/${day.current.value}/${month}/${year}.xlsx`;
     link.click();
     URL.revokeObjectURL(url);
   }
@@ -175,15 +163,15 @@ const ExportTableData = ({ code }) => {
       <div className="container-export">
         j
         <ButtonGoBack />
-        <h1>Exportar Tabela</h1>
+        <h1>Exportar Dados Operacionais</h1>
         <ExportOptions
-          tableMode={true}
-          id={["divExport", "select1", "select2", "select3", "select4"]}
+          tableMode={false}
+          id={["divExport", "select2", "select3", "a", "select1"]}
           handleYearInputChange={handleYearInputChange}
           handleMonthInputChange={handleMonthInputChange}
           monthList={availMonthData}
           daysList={availDayData}
-          refList={[start, end]}
+          refList={[day]}
         />
         <div id="divControl">
           <Button id={"btnCancel"} func={cancel} hidden={"hidden"}>
@@ -194,26 +182,16 @@ const ExportTableData = ({ code }) => {
         <div
           id="divTableExport"
           style={{
-            "--start-height": `45vh`,
+            "--start-height": `20vh`,
             "--start-pad": `0 0 .5vh 0`,
           }}
         >
           <TableShow
-            tableMode={true}
             headerName={[
-              "Data",
-              "Horário",
-              "Número de Cabines",
-              "Velocidade [m/s]",
-              "Vento na Torre #10 [m/s]",
-              "Carro tensor 1 - Tensão [KN]",
-              "Carro tensor 2 - Tensão [KN]",
-              "Carro tensor 1 - Pressão [Bar]",
-              "Carro tensor 2 - Pressão [Bar]",
-              "Pressão do freio de serviço [Bar]",
-              "Pressão do freio de emergência [Bar]",
-              "Posição do carro tensor [cm]",
-              "Temperatura ambiente [°C]",
+              "Sistema [Viagem]",
+              "Sistema [Parada]",
+              "Tipo de operação - Passageiros [Viagem]",
+              "Tipo de operação Passageiros [Parada]",
             ]}
             data={data}
             year={year}
@@ -230,4 +208,4 @@ const ExportTableData = ({ code }) => {
   );
 };
 
-export default ExportTableData;
+export default ExportOprData;
