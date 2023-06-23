@@ -78,7 +78,7 @@ const SaveTableData = ({ code }) => {
         <h1>Tabela</h1>
         <div
           id="divForm"
-          style={{ "--start-height": `55vh`, "--start-pad": `3vh 0 2vh 0` }}
+          style={{ "--start-height": `45vh`, "--start-pad": `3vh 0 2vh 0` }}
         >
           <Form
             time={[true, time]}

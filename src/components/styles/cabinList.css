@@ -7,7 +7,7 @@
   }
 }
 .container-list {
-  min-height: 70vh;
+  min-height: 80vh;
   height: fit-content;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);
@@ -61,7 +61,7 @@ h1 {
   width: 80%;
   display: flex;
   padding: 0;
-  margin: 5% 0;
+  margin: 3vh 0;
   list-style: none;
   flex-direction: column;
   justify-content: flex-start;
@@ -183,7 +183,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 23em;
+  height: 30vh;
 }
 .container-list > div::-webkit-scrollbar {
   width: 3px;
@@ -313,7 +313,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    height: 40em;
+    height: 28vh;
   }
   .container-list > div > ul > li:nth-child(1) {
     display: none;

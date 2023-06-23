@@ -59,7 +59,7 @@ const SaveOprData = ({ code }) => {
         <h1>Dados Operacionais</h1>
         <div
           id="divOprForm"
-          style={{ "--start-height": `55vh`, "--start-pad": `3vh 0 2vh 0` }}
+          style={{ "--start-height": `45vh`, "--start-pad": `3vh 0 2vh 0` }}
         >
           <Form
             type={"number"}

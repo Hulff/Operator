@@ -7,7 +7,7 @@
   }
 }
 .container-order {
-  min-height: 70vh;
+  min-height: 80vh;
   height: fit-content;
   border-radius: 1vh;
   border: 1.5px solid rgb(27, 208, 249);
@@ -33,9 +33,9 @@
   transition: color 0.7s, background 0.7s, border 0.7s;
 }
 .container-order > div:nth-child(4) {
-  padding-left: 5%;
+  padding-left: 10%;
   display: flex;
-  width: 95%;
+  width: 90%;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -89,17 +89,21 @@
   background: #1e1e1e;
   border: 1.5px solid rgb(27, 208, 249);
 }
-h1,
+h1 {
+  color: white;
+  animation: show 1s linear forwards;
+  font-size: 2.5vh;
+}
 h2 {
   color: white;
   animation: show 1s linear forwards;
-  font-size: 3vh;
+  font-size: 1.5vh;
 }
 .container-order > ul:nth-child(3) {
   width: 80%;
   display: flex;
   padding: 0;
-  margin: 5% 0;
+  margin: 3% 0;
   list-style: none;
   flex-direction: row;
   flex-wrap: wrap;
@@ -168,7 +172,7 @@ li {
     align-items: center;
   }
   .container-order {
-    min-height: 70vh;
+    min-height: 80vh;
     height: -moz-fit-content;
     height: fit-content;
     border-radius: 1vh;
