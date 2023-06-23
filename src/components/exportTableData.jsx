@@ -102,7 +102,7 @@ const ExportTableData = ({ code }) => {
     if (
       start.current.value !== null &&
       end.current.value !== null &&
-      start.current.value =< end.current.value
+      start.current.value <= end.current.value
     ) {
       select1.current.style.animation = "hideSelect 0.5s linear forwards";
       select2.current.style.animation = "hideSelect 0.5s linear forwards";
